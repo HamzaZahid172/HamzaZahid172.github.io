@@ -20,10 +20,31 @@ h1{margin:0 0 8px}h2{margin:8px 0 12px}
 .stat-cards{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
 .stat-cards img{border-radius:12px;border:1px solid var(--border)}
 .small{font-size:13px;color:var(--muted)}
-.avatar{width:140px;height:140px;border-radius:16px;border:1px solid var(--border);background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;color:#001018;font-weight:900}
 .footer{margin:40px 0;color:var(--muted);text-align:center}
 .btn{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#001018;text-decoration:none;padding:10px 14px;border-radius:12px;font-weight:700}
 .btn:hover{filter:brightness(1.05)}
 .list{list-style:none;padding:0;margin:0;display:grid;gap:16px}
 .list li{padding:14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,.03)}
 table{width:100%;border-collapse:separate;border-spacing:0 10px}td{padding:6px 10px;border-bottom:1px solid var(--border)}
+.cta { display: flex; gap: 12px; margin-top: 12px; flex-wrap: wrap; }
+
+/* Limit hero image size */
+.hero-photo{
+  display:block;
+  width:100%;
+  max-width:520px;     /* cap width */
+  height:auto;         /* keep aspect ratio on mobile */
+  border-radius:16px;
+  border:1px solid var(--border);
+  margin-inline:auto;
+}
+
+@media (min-width: 900px){
+  .hero-photo{
+    height:380px;      /* cap height on desktop */
+    width:auto;        /* let it scale from the height */
+    object-fit:cover;  /* crop nicely instead of squishing */
+    object-position:center; /* adjust cropping if needed */
+  }
+}
+
