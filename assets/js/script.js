@@ -1,10 +1,10 @@
 /* --- Typing animation --- */
 const phrases = [
   "TypeScript & Python Engineer",
-  "QA Automation Architect",
+  "Backend & Automation Engineer",
   "Web Scraping & Data Pipelines",
   "Cloud & CI/CD Enthusiast",
-  "Team Lead & Mentor",
+  "AI & Machine Learning Explorer",
   "7+ Years Building at Scale",
 ];
 let pi = 0,
@@ -12,6 +12,7 @@ let pi = 0,
   deleting = false;
 const el = document.getElementById("typed-text");
 function type() {
+  if (!el) return;
   const word = phrases[pi];
   if (!deleting) {
     el.textContent = word.substring(0, ci + 1);
@@ -34,9 +35,7 @@ function type() {
 type();
 
 /* --- Scroll reveal --- */
-const revealEls = document.querySelectorAll(
-  ".reveal, .reveal-left, .reveal-right",
-);
+const revealEls = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
 const io = new IntersectionObserver(
   (entries) => {
     entries.forEach((e) => {
@@ -48,11 +47,72 @@ const io = new IntersectionObserver(
   },
   { threshold: 0.08, rootMargin: "0px 0px -40px 0px" },
 );
-revealEls.forEach((el) => io.observe(el));
+revealEls.forEach((item) => io.observe(item));
 
 /* --- Navbar shadow on scroll --- */
 window.addEventListener("scroll", () => {
   const nav = document.getElementById("navbar");
-  nav.style.boxShadow =
-    window.scrollY > 50 ? "0 4px 40px rgba(0,0,0,.5)" : "none";
+  if (!nav) return;
+  nav.style.boxShadow = window.scrollY > 50 ? "0 4px 40px rgba(0,0,0,.5)" : "none";
 });
+
+/* --- Floating portfolio voice assistant --- */
+(function setupVoiceAssistant() {
+  if (!("speechSynthesis" in window)) return;
+
+  const style = document.createElement("style");
+  style.textContent = `
+    .voice-assistant{position:fixed;right:22px;bottom:22px;z-index:999;font-family:var(--font-body,monospace)}
+    .voice-trigger{width:54px;height:54px;border:1px solid rgba(0,212,255,.55);border-radius:50%;background:rgba(8,12,18,.94);color:#00d4ff;box-shadow:0 10px 35px rgba(0,0,0,.35),0 0 24px rgba(0,212,255,.14);cursor:pointer;display:grid;place-items:center;font-size:21px;backdrop-filter:blur(14px);transition:.2s ease}
+    .voice-trigger:hover{transform:translateY(-2px);background:rgba(0,212,255,.1)}
+    .voice-panel{position:absolute;right:0;bottom:66px;width:min(310px,calc(100vw - 36px));padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(13,19,32,.97);color:#e8edf5;box-shadow:0 18px 60px rgba(0,0,0,.45);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s ease}
+    .voice-assistant.open .voice-panel{opacity:1;visibility:visible;transform:translateY(0)}
+    .voice-panel strong{display:block;font-family:var(--font-head,sans-serif);font-size:15px;margin-bottom:6px}
+    .voice-panel p{color:#8b98ad;font-size:11px;line-height:1.65;margin:0 0 12px}
+    .voice-buttons{display:flex;gap:8px}.voice-buttons button{flex:1;border-radius:7px;padding:9px 10px;font:inherit;font-size:10px;letter-spacing:.06em;cursor:pointer;border:1px solid rgba(255,255,255,.12);background:transparent;color:#e8edf5}
+    .voice-buttons button:first-child{background:#00d4ff;border-color:#00d4ff;color:#031017;font-weight:600}.voice-status{margin-top:10px!important;margin-bottom:0!important;color:#00d4ff!important;min-height:16px}
+    @media(max-width:600px){.voice-assistant{right:16px;bottom:18px}.voice-trigger{width:50px;height:50px}.voice-panel{bottom:60px}}
+  `;
+  document.head.appendChild(style);
+
+  const root = document.createElement("div");
+  root.className = "voice-assistant";
+  root.innerHTML = `
+    <div class="voice-panel" role="dialog" aria-label="Portfolio voice assistant">
+      <strong>Portfolio Voice Assistant</strong>
+      <p>Listen to a short introduction about Hamza's experience and engineering focus.</p>
+      <div class="voice-buttons"><button type="button" data-action="play">▶ Listen</button><button type="button" data-action="stop">■ Stop</button></div>
+      <p class="voice-status" aria-live="polite"></p>
+    </div>
+    <button class="voice-trigger" type="button" aria-label="Open portfolio voice assistant" aria-expanded="false">🔊</button>`;
+  document.body.appendChild(root);
+
+  const trigger = root.querySelector(".voice-trigger");
+  const play = root.querySelector('[data-action="play"]');
+  const stop = root.querySelector('[data-action="stop"]');
+  const status = root.querySelector(".voice-status");
+
+  trigger.addEventListener("click", () => {
+    const open = root.classList.toggle("open");
+    trigger.setAttribute("aria-expanded", String(open));
+  });
+
+  const intro = "Hello. I'm Hamza Zahid Butt's portfolio assistant. Hamza is a Senior Software Engineer with more than seven years of experience in software engineering, automation, web scraping, data pipelines, quality engineering and cloud technologies. His current focus includes backend development, automation, data engineering and applied artificial intelligence. He has worked at Arbisoft on production systems for healthcare, travel and data products, and he is currently pursuing a master's degree at Technische Universität Ilmenau in Germany. Explore the portfolio to learn more about his experience, projects and technical skills.";
+
+  play.addEventListener("click", () => {
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(intro);
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+    utterance.lang = "en-US";
+    utterance.onstart = () => { status.textContent = "Speaking…"; };
+    utterance.onend = () => { status.textContent = "Finished."; };
+    utterance.onerror = () => { status.textContent = "Speech is unavailable in this browser."; };
+    window.speechSynthesis.speak(utterance);
+  });
+
+  stop.addEventListener("click", () => {
+    window.speechSynthesis.cancel();
+    status.textContent = "Stopped.";
+  });
+})();
