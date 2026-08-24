@@ -1,11 +1,12 @@
 /* --- Typing animation --- */
 const phrases = [
-  "TypeScript & Python Engineer",
-  "Backend & Automation Engineer",
-  "Web Scraping & Data Pipelines",
-  "Cloud & CI/CD Enthusiast",
-  "AI & Machine Learning Explorer",
-  "7+ Years Building at Scale",
+  "Senior Software Engineer",
+  "Python & Backend Engineering",
+  "Cloud-Native Development",
+  "Data Engineering & Data Science",
+  "LLM Applications & Agentic AI",
+  "AI-Assisted Development & Vibe Coding",
+  "Automation for Engineering Workflows",
 ];
 let pi = 0,
   ci = 0,
@@ -65,7 +66,7 @@ window.addEventListener("scroll", () => {
     .voice-assistant{position:fixed;right:22px;bottom:22px;z-index:999;font-family:var(--font-body,monospace)}
     .voice-trigger{width:54px;height:54px;border:1px solid rgba(0,212,255,.55);border-radius:50%;background:rgba(8,12,18,.94);color:#00d4ff;box-shadow:0 10px 35px rgba(0,0,0,.35),0 0 24px rgba(0,212,255,.14);cursor:pointer;display:grid;place-items:center;font-size:21px;backdrop-filter:blur(14px);transition:.2s ease}
     .voice-trigger:hover{transform:translateY(-2px);background:rgba(0,212,255,.1)}
-    .voice-panel{position:absolute;right:0;bottom:66px;width:min(310px,calc(100vw - 36px));padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(13,19,32,.97);color:#e8edf5;box-shadow:0 18px 60px rgba(0,0,0,.45);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s ease}
+    .voice-panel{position:absolute;right:0;bottom:66px;width:min(330px,calc(100vw - 36px));padding:16px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:rgba(13,19,32,.97);color:#e8edf5;box-shadow:0 18px 60px rgba(0,0,0,.45);backdrop-filter:blur(18px);opacity:0;visibility:hidden;transform:translateY(8px);transition:.2s ease}
     .voice-assistant.open .voice-panel{opacity:1;visibility:visible;transform:translateY(0)}
     .voice-panel strong{display:block;font-family:var(--font-head,sans-serif);font-size:15px;margin-bottom:6px}
     .voice-panel p{color:#8b98ad;font-size:11px;line-height:1.65;margin:0 0 12px}
@@ -78,13 +79,13 @@ window.addEventListener("scroll", () => {
   const root = document.createElement("div");
   root.className = "voice-assistant";
   root.innerHTML = `
-    <div class="voice-panel" role="dialog" aria-label="Portfolio voice assistant">
-      <strong>Portfolio Voice Assistant</strong>
-      <p>Listen to a short introduction about Hamza's experience and engineering focus.</p>
+    <div class="voice-panel" role="dialog" aria-label="Portfolio AI voice assistant">
+      <strong>AI Portfolio Assistant</strong>
+      <p>Listen to a short summary of Hamza's software engineering experience and current technical direction.</p>
       <div class="voice-buttons"><button type="button" data-action="play">▶ Listen</button><button type="button" data-action="stop">■ Stop</button></div>
       <p class="voice-status" aria-live="polite"></p>
     </div>
-    <button class="voice-trigger" type="button" aria-label="Open portfolio voice assistant" aria-expanded="false">🔊</button>`;
+    <button class="voice-trigger" type="button" aria-label="Open AI portfolio assistant" aria-expanded="false">🤖</button>`;
   document.body.appendChild(root);
 
   const trigger = root.querySelector(".voice-trigger");
@@ -97,12 +98,12 @@ window.addEventListener("scroll", () => {
     trigger.setAttribute("aria-expanded", String(open));
   });
 
-  const intro = "Hello. I'm Hamza Zahid Butt's portfolio assistant. Hamza is a Senior Software Engineer with more than seven years of experience in software engineering, automation, web scraping, data pipelines, quality engineering and cloud technologies. His current focus includes backend development, automation, data engineering and applied artificial intelligence. He has worked at Arbisoft on production systems for healthcare, travel and data products, and he is currently pursuing a master's degree at Technische Universität Ilmenau in Germany. Explore the portfolio to learn more about his experience, projects and technical skills.";
+  const intro = "Hello. I'm Hamza Zahid Butt's AI portfolio assistant. Hamza is a Senior Software Engineer with more than seven years of professional experience. His background includes backend-oriented software development, Python and TypeScript systems, data extraction and processing pipelines, REST API integrations, cloud technologies, CI CD and engineering automation. At Arbisoft, he worked on production products across healthcare, travel and data intelligence, and progressed into senior engineering and team leadership responsibilities. His current technical direction is Python backend development, cloud-native engineering, data science, machine learning, LLM applications and agentic AI. He also uses AI-assisted development and modern vibe coding workflows for rapid prototyping while keeping maintainability and software engineering quality in focus. Hamza is based in Germany and is interested in software engineering, backend, cloud, data and applied AI opportunities.";
 
   play.addEventListener("click", () => {
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(intro);
-    utterance.rate = 0.95;
+    utterance.rate = 0.94;
     utterance.pitch = 1;
     utterance.lang = "en-US";
     utterance.onstart = () => { status.textContent = "Speaking…"; };
