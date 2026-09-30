@@ -346,7 +346,39 @@
           Projects that better represent my direction in software engineering,
           backend, data science, cloud and applied AI.
         </p>
-        <div class="projects-grid">
+        <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
+          <article class="project-card reveal">
+            <div class="project-icon" aria-hidden="true">🌱</div>
+            <h3 class="project-name">GreenOps AI</h3>
+            <p class="project-desc">An open-source platform that analyzes cloud and AI workload configurations, identifies resource inefficiencies, estimates carbon impact and recommends lower-carbon execution windows. Built as an end-to-end local AI engineering project.</p>
+            <ul class="timeline-bullets">
+              <li>Workload analysis, carbon-intensity lookup and carbon-aware scheduling for flexible compute workloads.</li>
+              <li>Ollama-powered assistant and tool-calling agent, plus a RAG knowledge base with document uploads and pgvector semantic search.</li>
+              <li>PostgreSQL history, AI evaluation scenarios, Prometheus metrics and Grafana dashboards.</li>
+            </ul>
+            <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">FastAPI</span><span class="stack-tag">React</span><span class="stack-tag">TypeScript</span><span class="stack-tag">PostgreSQL</span><span class="stack-tag">pgvector</span><span class="stack-tag">Ollama</span><span class="stack-tag">RAG</span><span class="stack-tag">Docker</span><span class="stack-tag">GitHub Actions</span><span class="stack-tag">Prometheus</span><span class="stack-tag">Grafana</span></div>
+            <div class="project-stack">
+              <a href="https://github.com/HamzaZahid172/greenops-ai" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding:0.55rem 0.85rem;font-size:0.65rem">View GitHub ↗</a>
+              <a href="https://github.com/HamzaZahid172/greenops-ai/blob/main/docs/ARCHITECTURE.md" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding:0.55rem 0.85rem;font-size:0.65rem">Architecture ↗</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal" style="transition-delay:0.1s">
+            <div class="project-icon" aria-hidden="true">🎯</div>
+            <h3 class="project-name">AI Job Application OS</h3>
+            <p class="project-desc">A local-first AI application that parses PDF CVs, extracts job requirements and calculates explainable candidate-to-job match scores. It identifies skill gaps and generates tailored cover letters for human review.</p>
+            <ul class="timeline-bullets">
+              <li>Browser-based CV uploads, Ollama job-description parsing and a deterministic fallback when the local LLM is unavailable.</li>
+              <li>Matching and missing skills, experience and language warnings, and Apply / Maybe Apply / Low Match recommendations.</li>
+              <li>Human approval before saving, SQLite persistence and duplicate prevention, with Pytest tests and repeatable evaluation scenarios.</li>
+            </ul>
+            <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">FastAPI</span><span class="stack-tag">Ollama</span><span class="stack-tag">PDF Parsing</span><span class="stack-tag">SQLite</span><span class="stack-tag">Docker</span><span class="stack-tag">Pytest</span><span class="stack-tag">GitHub Actions</span></div>
+            <div class="project-stack">
+              <a href="https://github.com/HamzaZahid172/ai-job-application-os" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding:0.55rem 0.85rem;font-size:0.65rem">View GitHub ↗</a>
+              <a href="https://youtu.be/QiObEz8mIns" target="_blank" rel="noopener noreferrer" class="btn-outline" style="padding:0.55rem 0.85rem;font-size:0.65rem">Watch Demo ↗</a>
+            </div>
+          </article>
+
           <div class="project-card reveal">
             <div class="project-icon">🤖</div>
             <div class="project-name">AI Assistant / LLM API Application</div>
