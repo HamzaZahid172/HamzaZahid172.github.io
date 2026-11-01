@@ -226,3 +226,185 @@
   #projects .projects-lamp-halo,
   #projects .projects-lamp-beam{transition:none!important;}
 }
+
+
+/* ── v3: a COMPACT CENTER LAMP with light that continues on every row ──
+   This supersedes the old left rail and its fixed 750px diagonal beam. */
+#projects .projects-light-scene {
+  display: block;
+  grid-template-columns: none;
+}
+#projects .projects-light-scene::before,
+#projects .projects-light-scene.is-on::before {
+  content: none;
+  opacity: 0;
+}
+#projects .projects-lamp-rail {
+  position: sticky;
+  top: 72px;
+  z-index: 28;
+  box-sizing: border-box;
+  width: min(100%, 720px);
+  min-height: 140px;
+  height: 140px;
+  margin: 0 auto 20px;
+  padding: 5px clamp(12px,3vw,25px);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 16px;
+  border: 1px solid rgba(244,188,104,.24);
+  border-radius: 16px;
+  background: linear-gradient(105deg,rgba(13,18,27,.97),rgba(27,27,28,.96),rgba(12,17,27,.97));
+  box-shadow: 0 12px 33px rgba(0,0,0,.35);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+#projects .projects-light-scene.is-on .projects-lamp-rail {
+  border-color: rgba(245,192,110,.48);
+  background: linear-gradient(110deg,rgba(27,26,25,.97),rgba(54,42,27,.96),rgba(19,23,31,.97));
+}
+#projects .projects-lamp-overline {
+  align-self: center;
+  flex: 1 1 165px;
+  margin: 0;
+  max-width: 190px;
+  font-size: .58rem;
+  line-height: 1.7;
+}
+#projects .projects-lamp-footnote { display: none; }
+#projects .projects-lamp-status {
+  flex: 1 1 180px;
+  max-width: 190px;
+  min-height: 0;
+  margin: 0;
+  font-size: .64rem;
+  line-height: 1.75;
+}
+#projects .projects-lamp-switch {
+  flex: 0 0 112px;
+  width: 112px;
+  height: 140px;
+  margin: 0;
+  transform: none;
+  transform-origin: center center;
+}
+#projects .projects-lamp-cord {top:-10px;left:calc(50% - 1px);width:2px;height:48px;}
+#projects .projects-lamp-shade {top:25px;width:98px;height:49px;}
+#projects .projects-lamp-rim {top:72px;width:98px;height:7px;}
+#projects .projects-lamp-bulb {top:76px;left:calc(50% - 12px);width:24px;height:15px;}
+#projects .projects-lamp-halo {top:60px;left:calc(50% - 87px);width:174px;height:126px;}
+#projects .projects-lamp-beam {
+  top:86px;
+  left:calc(50% - 95px);
+  width:190px;
+  height:125px;
+  background:linear-gradient(180deg,rgba(255,206,119,.38),rgba(250,187,88,.06) 70%,transparent);
+}
+#projects .projects-lamp-switch-label {
+  bottom:1px;
+  padding:6px 9px;
+  font-size:.53rem;
+}
+#projects .projects-light-stage {
+  --glow-y: 240px;
+  isolation: isolate;
+  min-height: 320px;
+  width: 100%;
+  background: transparent;
+}
+#projects .projects-light-stage.is-lit {
+  background: transparent;
+}
+/* An ambient spotlight moves to the currently viewed rows on scroll. */
+#projects .projects-light-stage::before {
+  content:"";
+  position:absolute;
+  z-index:0;
+  inset:0;
+  border-radius:16px;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(ellipse 58% 440px at 50% var(--glow-y),
+      rgba(252,194,104,.18) 0%,rgba(252,194,104,.06) 53%,transparent 89%),
+    linear-gradient(180deg,rgba(252,190,99,.055),transparent 48%,rgba(252,190,99,.04) 100%);
+  transition: opacity .8s ease;
+}
+#projects .projects-light-stage.is-lit::before {opacity:1;}
+#projects .projects-light-ambient {display:none;}
+#projects .projects-light-stage .projects-grid {
+  position:relative;
+  z-index:1;
+}
+/* Every project becomes legible when ON, not just those under the top beam. */
+#projects .projects-light-stage .project-card {
+  filter:blur(9px) brightness(.14) saturate(.3);
+  opacity:.5;
+  background:rgba(16,23,32,.8);
+  transition:
+    filter .85s ease var(--light-delay,0ms),
+    opacity .85s ease var(--light-delay,0ms),
+    background .6s ease,
+    transform .35s ease,
+    border-color .35s ease,
+    box-shadow .35s ease;
+}
+#projects .projects-light-stage.is-lit .project-card {
+  filter:none;
+  opacity:1;
+  background:linear-gradient(160deg,rgba(246,180,90,.1),rgba(22,28,38,.93) 32%,rgba(14,19,28,.93));
+  border-color:rgba(246,191,106,.26);
+  box-shadow:0 9px 31px rgba(0,0,0,.19),inset 0 1px 0 rgba(247,218,168,.05);
+}
+#projects .projects-light-stage.is-lit .project-card.in-spotlight {
+  border-color:rgba(251,199,118,.5);
+  box-shadow:0 12px 35px rgba(248,184,99,.13),inset 0 1px 0 rgba(255,223,174,.13);
+}
+#projects .projects-light-stage.is-lit .project-card:hover {
+  border-color:rgba(251,199,118,.76);
+  box-shadow:0 16px 42px rgba(248,184,99,.2);
+}
+#projects .projects-light-stage.is-dark .project-card {transform:none;}
+@media (max-width:900px) {
+  #projects .projects-lamp-rail {top:68px;}
+  #projects .projects-lamp-switch {transform:none;margin:0;}
+}
+@media (max-width:640px) {
+  #projects .projects-light-scene {display:block;grid-template-columns:none;}
+  #projects .projects-lamp-rail {
+    position:sticky;
+    top:62px;
+    width:100%;
+    min-height:125px;
+    height:125px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    gap:9px;
+    padding:4px 10px;
+    border-right:1px solid rgba(244,188,104,.24);
+    border-bottom:1px solid rgba(244,188,104,.24);
+    text-align:left;
+  }
+  #projects .projects-lamp-overline {display:block;flex:1 1 80px;grid-column:auto;grid-row:auto;font-size:.49rem;letter-spacing:.04em;}
+  #projects .projects-lamp-switch {grid-column:auto;grid-row:auto;flex:0 0 101px;width:101px;height:120px;transform:none;margin:0;}
+  #projects .projects-lamp-shade {top:18px;width:85px;height:43px;}
+  #projects .projects-lamp-rim {top:59px;width:85px;}
+  #projects .projects-lamp-bulb {top:62px;}
+  #projects .projects-lamp-cord {height:39px;}
+  #projects .projects-lamp-halo {top:44px;}
+  #projects .projects-lamp-beam {top:71px;}
+  #projects .projects-lamp-status {grid-column:auto;grid-row:auto;align-self:center;flex:1 1 125px;font-size:.51rem;line-height:1.55;}
+  #projects .projects-light-stage .projects-grid {grid-template-columns:1fr!important;}
+}
+@media (max-width:390px) {
+  #projects .projects-lamp-overline {display:none;}
+  #projects .projects-lamp-rail {justify-content:center;}
+  #projects .projects-lamp-status {max-width:150px;}
+}
+@media (prefers-reduced-motion:reduce) {
+  #projects .projects-light-stage::before {transition:none!important;}
+}
