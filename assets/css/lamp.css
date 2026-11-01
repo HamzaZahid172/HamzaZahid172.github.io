@@ -12,9 +12,10 @@
 #projects .projects-lamp-mount {
   position: relative; /* deliberately NOT sticky */
   z-index: 5;
-  width: min(100%, 324px);
-  height: 193px;
-  margin: 10px auto 15px;
+  width: min(100%, 390px);
+  height: 184px;
+  /* Keep the wire clear of the Projects heading. */
+  margin: 62px auto 22px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -43,10 +44,11 @@
 }
 #projects .projects-lamp-cord {
   position: absolute;
-  top: -31px;
+  /* Short suspension cable, beginning below the section heading. */
+  top: 0;
   left: calc(50% - 1.5px);
   width: 3px;
-  height: 89px;
+  height: 57px;
   border-radius: 2px;
   background: linear-gradient(90deg,#272b35,#888c94,#272b35);
 }
@@ -198,9 +200,9 @@
   transform: translateY(-3px);
 }
 @media (max-width: 640px) {
-  #projects .projects-lamp-mount { width: min(100%, 300px); height: 175px; margin: 7px auto 12px; }
+  #projects .projects-lamp-mount { width: min(100%, 302px); height: 166px; margin: 48px auto 18px; }
   #projects .projects-lamp-switch { width: 134px; height: 158px; }
-  #projects .projects-lamp-cord { top: -30px; height: 79px; }
+  #projects .projects-lamp-cord { top: 0; height: 47px; }
   #projects .projects-lamp-shade { top: 40px; width: 103px; height: 54px; }
   #projects .projects-lamp-rim { top: 91px; width: 103px; }
   #projects .projects-lamp-bulb { top: 95px; }
@@ -222,15 +224,16 @@
 #projects .projects-lamp-toggle {
   position: absolute;
   z-index: 15;
-  top: 128px;
-  left: calc(50% + 43px);
+  /* A separate control, level with the right of the lamp, not beneath the bulb. */
+  top: 69px;
+  left: calc(50% + 105px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  min-width: 122px;
-  min-height: 43px;
-  padding: 7px 11px;
+  gap: 7px;
+  min-width: 112px;
+  min-height: 44px;
+  padding: 7px 10px;
   border: 1px solid rgba(241,190,117,.4);
   border-radius: 999px;
   color: #e2c99d;
@@ -299,13 +302,13 @@
 }
 @media (max-width:640px) {
   #projects .projects-lamp-toggle {
-    left:calc(50% + 29px);
-    top:116px;
-    min-width:115px;
-    min-height:42px;
-    gap:7px;
-    padding:7px 9px;
-    font-size:.55rem;
+    left:calc(50% + 55px);
+    top:62px;
+    min-width:101px;
+    min-height:44px;
+    gap:6px;
+    padding:7px 8px;
+    font-size:.53rem;
   }
 }
 @media (prefers-reduced-motion:reduce) {
