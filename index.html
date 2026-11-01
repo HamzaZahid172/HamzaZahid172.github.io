@@ -25,11 +25,11 @@
         }
       } catch (_) {}
     </script>
-    <noscript><style>.portfolio-reveal{display:none!important}</style></noscript>
+    <noscript><style>.portfolio-reveal,.ambient-light-switch{display:none!important}</style></noscript>
   </head>
   <body>
 
-    <!-- First-visit cinematic lamp: the actual portfolio remains behind this veil. -->
+    <!-- Global interactive light switch: the entire portfolio remains beneath this veil. -->
     <div id="portfolio-reveal" class="portfolio-reveal" role="dialog" aria-modal="true"
          aria-labelledby="reveal-title" aria-describedby="reveal-instruction">
       <div class="reveal-backdrop" aria-hidden="true"></div>
@@ -48,12 +48,23 @@
         <div class="reveal-copy">
           <span class="reveal-mode" id="reveal-mode">LIGHTS OFF · DISCOVER WHAT'S BEHIND</span>
           <h2 id="reveal-title">Great ideas deserve<br /><em>a little light.</em></h2>
-          <p id="reveal-instruction">Click the lamp to switch on the light and reveal my software engineering portfolio.</p>
-          <span class="reveal-action-label" aria-hidden="true">✦ CLICK THE LAMP TO ENTER</span>
+          <p id="reveal-instruction">Click the lamp to switch on the lights and reveal the entire portfolio. Switch them off again whenever you like.</p>
+          <span class="reveal-action-label" aria-hidden="true">✦ CLICK THE LAMP TO TURN EVERYTHING ON</span>
         </div>
-        <button id="reveal-skip" type="button" class="reveal-skip">Skip intro <span aria-hidden="true">↗</span></button>
+        <button id="reveal-skip" type="button" class="reveal-skip">Show portfolio <span aria-hidden="true">↗</span></button>
       </div>
     </div>
+    <!-- Persistent switch: available at every scroll position after entering. -->
+    <button id="ambient-light-switch" class="ambient-light-switch" type="button"
+            aria-label="Turn lights off across the entire portfolio" aria-pressed="true"
+            aria-controls="portfolio-reveal">
+      <svg class="ambient-lamp-symbol" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+        <path d="M20 3v9M13 12h14l6 16H7l6-16Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+        <path d="M13 29h14M20 29v7M14 36h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        <path d="m5 18-3 2m33-2 3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+      <span class="ambient-switch-copy">Lights off</span>
+    </button>
     <nav id="navbar">
       <div class="nav-logo">HZB<span>.</span></div>
       <ul class="nav-links">
@@ -90,7 +101,7 @@
             <a href="#projects" class="btn-primary">
               <span>View Projects</span><span>→</span>
             </a>
-            <button type="button" class="btn-outline reveal-replay" id="replay-reveal" aria-label="Replay the lamp welcome animation"><span aria-hidden="true">✦</span> Replay Intro</button>
+            <button type="button" class="btn-outline reveal-replay" id="replay-reveal" aria-label="Turn the lamp off and blur the entire portfolio"><span aria-hidden="true">✦</span> Lights off</button>
             <a href="https://github.com/HamzaZahid172" target="_blank" class="btn-outline">
               <span>GitHub Profile</span><span>↗</span>
             </a>
