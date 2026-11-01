@@ -1,34 +1,41 @@
-/* The lamp controls the Projects gallery only. Other site sections never dim. */
+/* A side-mounted lamp lights the existing Projects gallery progressively. */
 (() => {
-  const section = document.getElementById("projects");
-  const consolePanel = document.getElementById("projects-lamp-console");
+  const scene = document.getElementById("projects-light-scene");
   const toggle = document.getElementById("projects-lamp-switch");
   const stage = document.getElementById("projects-light-stage");
   const grid = stage && stage.querySelector(".projects-grid");
   const label = document.getElementById("projects-lamp-switch-label");
   const status = document.getElementById("projects-light-status");
-  if (!section || !consolePanel || !toggle || !stage || !grid || !label || !status) return;
+  if (!scene || !toggle || !stage || !grid || !label || !status) return;
 
-  let lightsOn = false;
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let lit = false;
+
+  [...grid.querySelectorAll(".project-card")].forEach((card,index) => {
+    // Ripple the light from the lamp toward the cards.
+    card.style.setProperty("--light-delay",
+      reduceMotion.matches ? "0ms" : (Math.min(index,6)*95)+"ms");
+  });
+
   function render() {
-    stage.classList.toggle("is-dark", !lightsOn);
-    stage.classList.toggle("is-lit", lightsOn);
-    consolePanel.classList.toggle("is-off", !lightsOn);
-    consolePanel.classList.toggle("is-on", lightsOn);
-    toggle.setAttribute("aria-pressed", String(lightsOn));
-    toggle.setAttribute("aria-label", lightsOn
-      ? "Switch off the lamp and blur the Projects section"
-      : "Switch on the lamp and reveal all engineering projects");
-    label.textContent = lightsOn ? "☾ Turn lights off" : "☀ Turn lights on";
-    status.textContent = lightsOn
-      ? "Lights on. Explore the engineering projects below."
-      : "The projects are in the dark. Click the lamp to reveal them.";
-    // Prevent keyboard navigation into blurred links while lights are off.
-    grid.inert = !lightsOn;
+    scene.classList.toggle("is-on",lit);
+    scene.classList.toggle("is-off",!lit);
+    stage.classList.toggle("is-lit",lit);
+    stage.classList.toggle("is-dark",!lit);
+    toggle.setAttribute("aria-pressed",String(lit));
+    toggle.setAttribute("aria-label",lit
+      ? "Switch the lamp off and dim the projects"
+      : "Switch the lamp on and illuminate the projects");
+    label.textContent = lit ? "TURN LIGHTS OFF" : "TURN LIGHTS ON";
+    status.textContent = lit
+      ? "Lights on. Explore my work."
+      : "Lights off. Click the lamp to reveal my work.";
+    // Prevent clicking or tabbing into project links while they are unreadable.
+    grid.inert = !lit;
   }
 
   toggle.addEventListener("click", () => {
-    lightsOn = !lightsOn;
+    lit = !lit;
     render();
   });
   render();
