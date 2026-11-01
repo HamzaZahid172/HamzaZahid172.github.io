@@ -16,8 +16,44 @@
     />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/lamp.css" />
+    <script>
+      // Returning visitors in the same session skip the reveal; ?intro=1 replays it.
+      try {
+        const replay = new URLSearchParams(location.search).get("intro") === "1";
+        if (!replay && sessionStorage.getItem("hzb-intro-revealed-v1") === "yes") {
+          document.documentElement.classList.add("portfolio-reveal-seen");
+        }
+      } catch (_) {}
+    </script>
+    <noscript><style>.portfolio-reveal{display:none!important}</style></noscript>
   </head>
   <body>
+
+    <!-- First-visit cinematic lamp: the actual portfolio remains behind this veil. -->
+    <div id="portfolio-reveal" class="portfolio-reveal" role="dialog" aria-modal="true"
+         aria-labelledby="reveal-title" aria-describedby="reveal-instruction">
+      <div class="reveal-backdrop" aria-hidden="true"></div>
+      <div class="reveal-light-wash" aria-hidden="true"></div>
+      <div class="reveal-content">
+        <div class="reveal-eyebrow"><span class="reveal-status-dot"></span> HZB / INTERACTIVE PORTFOLIO</div>
+        <button id="reveal-lamp" type="button" class="reveal-lamp" aria-label="Switch on the lamp to reveal Hamza Zahid Butt's portfolio">
+          <span class="reveal-lamp-cord" aria-hidden="true"></span>
+          <span class="reveal-lamp-shade" aria-hidden="true"></span>
+          <span class="reveal-lamp-rim" aria-hidden="true"></span>
+          <span class="reveal-lamp-bulb" aria-hidden="true"></span>
+          <span class="reveal-lamp-cone" aria-hidden="true"></span>
+          <span class="reveal-lamp-halo" aria-hidden="true"></span>
+          <span class="reveal-lamp-click" aria-hidden="true">↗</span>
+        </button>
+        <div class="reveal-copy">
+          <span class="reveal-mode" id="reveal-mode">LIGHTS OFF · DISCOVER WHAT'S BEHIND</span>
+          <h2 id="reveal-title">Great ideas deserve<br /><em>a little light.</em></h2>
+          <p id="reveal-instruction">Click the lamp to switch on the light and reveal my software engineering portfolio.</p>
+          <span class="reveal-action-label" aria-hidden="true">✦ CLICK THE LAMP TO ENTER</span>
+        </div>
+        <button id="reveal-skip" type="button" class="reveal-skip">Skip intro <span aria-hidden="true">↗</span></button>
+      </div>
+    </div>
     <nav id="navbar">
       <div class="nav-logo">HZB<span>.</span></div>
       <ul class="nav-links">
@@ -54,6 +90,7 @@
             <a href="#projects" class="btn-primary">
               <span>View Projects</span><span>→</span>
             </a>
+            <button type="button" class="btn-outline reveal-replay" id="replay-reveal" aria-label="Replay the lamp welcome animation"><span aria-hidden="true">✦</span> Replay Intro</button>
             <a href="https://github.com/HamzaZahid172" target="_blank" class="btn-outline">
               <span>GitHub Profile</span><span>↗</span>
             </a>
@@ -64,33 +101,6 @@
 
 
         <div class="hero-side reveal-right">
-          <div class="lamp-showcase" id="lamp-showcase" aria-label="Interactive portfolio spotlight">
-            <div class="lamp-topline">
-              <span class="lamp-overline">INTERACTIVE PORTFOLIO / 001</span>
-              <span class="lamp-live"><span class="lamp-live-dot"></span> CREATIVE MODE</span>
-            </div>
-            <div class="lamp-stage" aria-hidden="true">
-              <div class="lamp-halo"></div>
-              <div class="lamp-cord"></div>
-              <div class="lamp-shade"></div>
-              <div class="lamp-bulb"></div>
-              <div class="lamp-beam"></div>
-              <div class="lamp-floor"></div>
-            </div>
-            <div class="lamp-greeting">
-              <span class="lamp-greeting-label">WELCOME TO MY WORLD</span>
-              <h2>Where ideas<br />meet <em>engineering.</em></h2>
-              <p>Backend · Cloud · Data · Applied AI</p>
-              <a href="#projects" class="lamp-project-link">Explore my work <span aria-hidden="true">↗</span></a>
-            </div>
-            <div class="lamp-controls">
-              <span class="lamp-state" id="lamp-state" aria-live="polite">Spotlight on</span>
-              <button id="lamp-toggle" class="lamp-toggle" type="button" aria-label="Turn off spotlight" aria-pressed="true" aria-controls="lamp-showcase">
-                <span class="lamp-switch-icon" aria-hidden="true">☼</span>
-                <span class="lamp-toggle-text">Lights off</span>
-              </button>
-            </div>
-          </div>
           <div class="hero-stats">
           <div class="stat-item">
             <span class="stat-num">7+</span>
@@ -377,20 +387,6 @@
           Projects that better represent my direction in software engineering,
           backend, data science, cloud and applied AI.
         </p>
-        <div class="lighting-studio reveal" id="lighting-studio">
-          <div class="lighting-studio-intro">
-            <span class="lighting-studio-kicker">INTERACTIVE LIGHTING STUDIO</span>
-            <h3>Where should the spotlight fall?</h3>
-            <p id="lighting-description" aria-live="polite">Projects illuminated. Explore the work, or preview the entire page in night mode.</p>
-          </div>
-          <div class="lighting-studio-actions">
-            <div class="lighting-scope-options" role="group" aria-label="Spotlight area">
-              <button type="button" class="lighting-scope-btn is-active" data-light-scope="projects" aria-pressed="true">✦ Projects</button>
-              <button type="button" class="lighting-scope-btn" data-light-scope="page" aria-pressed="false">☾ Whole page</button>
-            </div>
-            <button type="button" id="projects-light-toggle" class="lighting-project-toggle" aria-pressed="true">Turn lights off</button>
-          </div>
-        </div>
         <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
           <article class="project-card reveal">
             <div class="project-icon" aria-hidden="true">🌱</div>
@@ -538,7 +534,6 @@
       </div>
     </footer>
     <script src="assets/js/script.js" defer></script>
-    <button id="lighting-exit" class="lighting-exit" type="button" hidden aria-label="Restore normal page lighting">☀ Restore daylight <span aria-hidden="true">↗</span></button>
     <script src="assets/js/lamp.js" defer></script>
   </body>
 </html>
