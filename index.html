@@ -15,6 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/lamp.css" />
   </head>
   <body>
     <nav id="navbar">
@@ -61,7 +62,36 @@
           </div>
         </div>
 
-        <div class="hero-stats reveal-right">
+
+        <div class="hero-side reveal-right">
+          <div class="lamp-showcase" id="lamp-showcase" aria-label="Interactive portfolio spotlight">
+            <div class="lamp-topline">
+              <span class="lamp-overline">INTERACTIVE PORTFOLIO / 001</span>
+              <span class="lamp-live"><span class="lamp-live-dot"></span> CREATIVE MODE</span>
+            </div>
+            <div class="lamp-stage" aria-hidden="true">
+              <div class="lamp-halo"></div>
+              <div class="lamp-cord"></div>
+              <div class="lamp-shade"></div>
+              <div class="lamp-bulb"></div>
+              <div class="lamp-beam"></div>
+              <div class="lamp-floor"></div>
+            </div>
+            <div class="lamp-greeting">
+              <span class="lamp-greeting-label">WELCOME TO MY WORLD</span>
+              <h2>Where ideas<br />meet <em>engineering.</em></h2>
+              <p>Backend · Cloud · Data · Applied AI</p>
+              <a href="#projects" class="lamp-project-link">Explore my work <span aria-hidden="true">↗</span></a>
+            </div>
+            <div class="lamp-controls">
+              <span class="lamp-state" id="lamp-state" aria-live="polite">Spotlight on</span>
+              <button id="lamp-toggle" class="lamp-toggle" type="button" aria-label="Turn off spotlight" aria-pressed="true" aria-controls="lamp-showcase">
+                <span class="lamp-switch-icon" aria-hidden="true">☼</span>
+                <span class="lamp-toggle-text">Lights off</span>
+              </button>
+            </div>
+          </div>
+          <div class="hero-stats">
           <div class="stat-item">
             <span class="stat-num">7+</span>
             <span class="stat-label">Years Engineering Experience</span>
@@ -80,6 +110,7 @@
           <div class="stat-item">
             <span class="stat-num">24/7</span>
             <span class="stat-label">Automation Mindset</span>
+          </div>
           </div>
         </div>
       </div>
@@ -493,5 +524,6 @@
       </div>
     </footer>
     <script src="assets/js/script.js" defer></script>
+    <script src="assets/js/lamp.js" defer></script>
   </body>
 </html>
