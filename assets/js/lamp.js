@@ -6,6 +6,7 @@
   const grid=stage&&stage.querySelector(".projects-grid");
   const label=document.getElementById("projects-lamp-switch-label");
   const status=document.getElementById("projects-light-status");
+  const showAll=document.getElementById("projects-show-all");
   if(!scene||!stage||!lamp||!grid||!label||!status)return;
 
   const cards=[...grid.querySelectorAll(".project-card")];
@@ -48,6 +49,11 @@
     if(lit)onViewportChange();
   }
   lamp.addEventListener("click",()=>{lit=!lit;render();});
+  if(showAll)showAll.addEventListener("click",()=>{
+    lit=true;
+    render();
+    stage.scrollIntoView({behavior:reduced.matches?"auto":"smooth",block:"start"});
+  });
   window.addEventListener("scroll",onViewportChange,{passive:true});
   window.addEventListener("resize",onViewportChange,{passive:true});
   render();
