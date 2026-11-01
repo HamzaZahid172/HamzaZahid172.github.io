@@ -1,0 +1,229 @@
+/* Interactive lamp showcase: independent of the existing portfolio design. */
+.hero-side {
+  width: min(355px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.lamp-showcase {
+  --lamp-gold: #f6c36b;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-height: 356px;
+  overflow: hidden;
+  border: 1px solid rgba(246,195,107,.25);
+  border-radius: 18px;
+  background: radial-gradient(ellipse at 34% 45%, #27251e 0%, #141921 50%, #0a101a 100%);
+  box-shadow: 0 20px 70px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.06);
+  transition: background .55s ease, border-color .55s ease;
+}
+.lamp-topline {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  gap: .75rem;
+  align-items: center;
+  padding: 16px 16px 0;
+  font-family: var(--font-body,monospace);
+  font-size: 8px;
+  letter-spacing: .1em;
+  color: #a9a9a3;
+}
+.lamp-live { color: var(--lamp-gold); white-space: nowrap; }
+.lamp-live-dot {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 3px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 9px currentColor;
+}
+.lamp-stage { position: absolute; inset: 31px 0 0; pointer-events: none; }
+.lamp-halo {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  width: 67%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,181,73,.3), transparent 68%);
+  filter: blur(17px);
+  opacity: 1;
+  transition: opacity .55s ease;
+}
+.lamp-cord {
+  position: absolute;
+  top: -30px;
+  left: 30%;
+  width: 2px;
+  height: 106px;
+  background: linear-gradient(#454850,#22252c);
+}
+.lamp-shade {
+  position: absolute;
+  top: 56px;
+  left: calc(30% - 42px);
+  width: 84px;
+  height: 43px;
+  background: linear-gradient(100deg, #171b22, #40444c 52%, #11151c);
+  clip-path: polygon(34% 0, 66% 0, 100% 100%, 0 100%);
+  filter: drop-shadow(0 5px 6px rgba(0,0,0,.6));
+  z-index: 2;
+}
+.lamp-shade::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 6px;
+  background: #edb965;
+}
+.lamp-bulb {
+  position: absolute;
+  z-index: 2;
+  top: 96px;
+  left: calc(30% - 10px);
+  width: 20px;
+  height: 10px;
+  border-radius: 0 0 50% 50%;
+  background: #ffe4a4;
+  box-shadow: 0 0 18px 7px rgba(246,193,99,.7);
+  transition: background .4s, box-shadow .4s;
+}
+.lamp-beam {
+  position: absolute;
+  top: 98px;
+  left: calc(30% - 117px);
+  width: 234px;
+  height: 190px;
+  clip-path: polygon(46% 0%,54% 0%,100% 100%,0% 100%);
+  background: linear-gradient(180deg, rgba(255,203,102,.52),rgba(244,180,68,.14) 68%,rgba(244,180,68,0));
+  opacity: 1;
+  transition: opacity .55s ease;
+}
+.lamp-floor {
+  position: absolute;
+  top: 288px;
+  left: calc(30% - 104px);
+  width: 208px;
+  height: 1px;
+  background: rgba(251,201,113,.5);
+  box-shadow: 0 0 18px 6px rgba(255,174,45,.14);
+  transition: opacity .55s ease;
+}
+.lamp-greeting {
+  position: absolute;
+  z-index: 2;
+  top: 118px;
+  right: 14px;
+  width: 56%;
+  padding: 13px 12px;
+  border: 1px solid rgba(245,193,107,.22);
+  border-radius: 12px;
+  color: #f2f4f6;
+  background: rgba(13,19,29,.84);
+  box-shadow: 0 10px 35px rgba(0,0,0,.24);
+  backdrop-filter: blur(12px);
+  transition: border-color .55s ease;
+}
+.lamp-greeting-label {
+  font-size: 8px;
+  letter-spacing: .1em;
+  color: var(--lamp-gold);
+}
+.lamp-greeting h2 {
+  margin: 8px 0;
+  font-family: var(--font-head,sans-serif);
+  font-size: clamp(15px, 1.6vw, 20px);
+  font-weight: 700;
+  line-height: 1.27;
+}
+.lamp-greeting h2 em { font-style: normal; color: var(--lamp-gold); }
+.lamp-greeting p {
+  color: #aab3c1;
+  font-size: 10px;
+  line-height: 1.6;
+  margin: 0 0 11px;
+}
+.lamp-project-link {
+  color: var(--lamp-gold);
+  font-size: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(246,195,107,.5);
+}
+.lamp-project-link:hover, .lamp-project-link:focus-visible {
+  color: #fff;
+  border-color: #fff;
+}
+.lamp-controls {
+  position: absolute;
+  z-index: 3;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.lamp-state {
+  font-size: 10px;
+  letter-spacing: .04em;
+  color: #e3c991;
+}
+.lamp-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 11px;
+  color: #151514;
+  background: #f6c36b;
+  border: 1px solid #f6c36b;
+  border-radius: 20px;
+  font-family: var(--font-body,monospace);
+  font-size: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, color .2s, transform .2s;
+}
+.lamp-toggle:hover { transform: translateY(-2px); background: #ffdf9b; }
+.lamp-toggle:focus-visible { outline: 2px solid #00d4ff; outline-offset: 3px; }
+.lamp-switch-icon { font-size: 16px; line-height: .8; }
+.lamp-showcase.lamp-off {
+  background: radial-gradient(ellipse at 34% 45%, #161c27 0%, #0a101a 70%);
+  border-color: rgba(131,160,198,.2);
+}
+.lamp-off .lamp-halo, .lamp-off .lamp-beam, .lamp-off .lamp-floor { opacity: 0; }
+.lamp-off .lamp-bulb { background: #505561; box-shadow: none; }
+.lamp-off .lamp-shade::after { background: #484b52; }
+.lamp-off .lamp-greeting { border-color: rgba(125,155,194,.2); }
+.lamp-off .lamp-greeting-label, .lamp-off .lamp-greeting h2 em, .lamp-off .lamp-project-link, .lamp-off .lamp-live { color: #9eb5d1; }
+.lamp-off .lamp-state { color: #9eb5d1; }
+.lamp-off .lamp-toggle { background: #25364a; border-color: #54718e; color: #e8f1ff; }
+.hero-side .hero-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  min-width: 0;
+  padding: 18px 12px;
+}
+.hero-side .stat-divider { display: none; }
+.hero-side .stat-item { padding: 4px; }
+.hero-side .stat-num { font-size: 1.7rem; }
+.hero-side .stat-label { font-size: .53rem; line-height: 1.6; }
+@media (max-width: 900px) {
+  .hero-side { width: min(480px, 100%); margin: 0 auto; }
+  .lamp-greeting h2 { font-size: 20px; }
+}
+@media (max-width: 380px) {
+  .lamp-topline { font-size: 7px; padding-left: 12px; padding-right: 12px; }
+  .lamp-greeting { width: 59%; right: 10px; padding: 11px 9px; }
+  .lamp-greeting h2 { font-size: 16px; }
+  .lamp-controls { left: 12px; right: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lamp-showcase, .lamp-showcase *, .lamp-showcase *::after { transition: none !important; }
+}
