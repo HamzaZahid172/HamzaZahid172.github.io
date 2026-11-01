@@ -85,13 +85,13 @@ window.addEventListener("scroll", () => {
   const root = document.createElement("div");
   root.className = "voice-assistant";
   root.innerHTML = `
-    <div class="voice-panel" role="dialog" aria-label="Portfolio AI voice assistant">
-      <strong>AI Portfolio Assistant</strong>
-      <p>Hear a concise overview of Hamza's software engineering, cloud, data and applied AI profile.</p>
+    <div class="voice-panel" role="dialog" aria-label="Portfolio voice overview">
+      <strong>Portfolio Voice Overview</strong>
+      <p>Listen to a short introduction to Hamza's engineering experience and selected work.</p>
       <div class="voice-buttons"><button type="button" data-action="play">▶ Listen</button><button type="button" data-action="stop">■ Stop</button></div>
       <p class="voice-status" aria-live="polite"></p>
     </div>
-    <button class="voice-trigger" type="button" aria-label="Open AI portfolio assistant" aria-expanded="false">🤖</button>`;
+    <button class="voice-trigger" type="button" aria-label="Open portfolio voice overview" aria-expanded="false">🤖</button>`;
   document.body.appendChild(root);
 
   const trigger = root.querySelector(".voice-trigger");
@@ -104,7 +104,7 @@ window.addEventListener("scroll", () => {
     trigger.setAttribute("aria-expanded", String(open));
   });
 
-  const intro = "Hello. I'm Hamza Zahid Butt's AI portfolio assistant. Hamza is a Senior Software Engineer with more than seven years of professional software engineering experience. He has built production systems using Python, TypeScript, JavaScript and Node.js, including backend-oriented services, REST API integrations, large-scale data extraction and processing pipelines, and cloud-based engineering workflows. He has hands-on experience with AWS, Docker, Kubernetes, CI CD and modern developer tooling. Alongside his professional engineering background, Hamza is actively building his applied AI profile through Python, data science and machine learning projects, including predictive modeling and data analysis. He understands modern LLM application development, prompt engineering, AI-assisted coding, retrieval and agentic AI concepts, and is exploring how intelligent agents can be integrated into practical software products and engineering workflows. His automation background remains a supporting engineering strength, rather than his primary career direction. Hamza's current focus is backend software engineering, cloud-native development, data engineering, machine learning, LLM applications and agentic AI. He is based in Germany and is open to software engineering, backend, cloud, data and applied AI opportunities.";
+  const intro = "Hello. This is a short introduction to Hamza Zahid Butt's engineering portfolio. Hamza is a Senior Software Engineer with more than seven years of professional software engineering experience. He has built production systems using Python, TypeScript, JavaScript and Node.js, including backend-oriented services, REST API integrations, large-scale data extraction and processing pipelines, and cloud-based engineering workflows. He has hands-on experience with AWS, Docker, Kubernetes, CI CD and modern developer tooling. Alongside his professional engineering background, Hamza is actively building his applied AI profile through Python, data science and machine learning projects, including predictive modeling and data analysis. He understands modern LLM application development, prompt engineering, AI-assisted coding, retrieval and agentic AI concepts, and is exploring how intelligent agents can be integrated into practical software products and engineering workflows. His automation background remains a supporting engineering strength, rather than his primary career direction. Hamza's current focus is backend software engineering, cloud-native development, data engineering, machine learning, LLM applications and agentic AI. He is based in Germany and is open to software engineering, backend, cloud, data and applied AI opportunities.";
 
   play.addEventListener("click", () => {
     window.speechSynthesis.cancel();
