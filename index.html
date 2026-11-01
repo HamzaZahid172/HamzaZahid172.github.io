@@ -16,55 +16,10 @@
     />
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/lamp.css" />
-    <script>
-      // Returning visitors in the same session skip the reveal; ?intro=1 replays it.
-      try {
-        const replay = new URLSearchParams(location.search).get("intro") === "1";
-        if (!replay && sessionStorage.getItem("hzb-intro-revealed-v1") === "yes") {
-          document.documentElement.classList.add("portfolio-reveal-seen");
-        }
-      } catch (_) {}
-    </script>
-    <noscript><style>.portfolio-reveal,.ambient-light-switch{display:none!important}</style></noscript>
+    <noscript><style>.projects-light-stage .projects-obscurer{display:none!important}</style></noscript>
   </head>
   <body>
 
-    <!-- Global interactive light switch: the entire portfolio remains beneath this veil. -->
-    <div id="portfolio-reveal" class="portfolio-reveal" role="dialog" aria-modal="true"
-         aria-labelledby="reveal-title" aria-describedby="reveal-instruction">
-      <div class="reveal-backdrop" aria-hidden="true"></div>
-      <div class="reveal-light-wash" aria-hidden="true"></div>
-      <div class="reveal-content">
-        <div class="reveal-eyebrow"><span class="reveal-status-dot"></span> HZB / INTERACTIVE PORTFOLIO</div>
-        <button id="reveal-lamp" type="button" class="reveal-lamp" aria-label="Switch on the lamp to reveal Hamza Zahid Butt's portfolio">
-          <span class="reveal-lamp-cord" aria-hidden="true"></span>
-          <span class="reveal-lamp-shade" aria-hidden="true"></span>
-          <span class="reveal-lamp-rim" aria-hidden="true"></span>
-          <span class="reveal-lamp-bulb" aria-hidden="true"></span>
-          <span class="reveal-lamp-cone" aria-hidden="true"></span>
-          <span class="reveal-lamp-halo" aria-hidden="true"></span>
-          <span class="reveal-lamp-click" aria-hidden="true">↗</span>
-        </button>
-        <div class="reveal-copy">
-          <span class="reveal-mode" id="reveal-mode">LIGHTS OFF · DISCOVER WHAT'S BEHIND</span>
-          <h2 id="reveal-title">Great ideas deserve<br /><em>a little light.</em></h2>
-          <p id="reveal-instruction">Click the lamp to switch on the lights and reveal the entire portfolio. Switch them off again whenever you like.</p>
-          <span class="reveal-action-label" aria-hidden="true">✦ CLICK THE LAMP TO TURN EVERYTHING ON</span>
-        </div>
-        <button id="reveal-skip" type="button" class="reveal-skip">Show portfolio <span aria-hidden="true">↗</span></button>
-      </div>
-    </div>
-    <!-- Persistent switch: available at every scroll position after entering. -->
-    <button id="ambient-light-switch" class="ambient-light-switch" type="button"
-            aria-label="Turn lights off across the entire portfolio" aria-pressed="true"
-            aria-controls="portfolio-reveal">
-      <svg class="ambient-lamp-symbol" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
-        <path d="M20 3v9M13 12h14l6 16H7l6-16Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
-        <path d="M13 29h14M20 29v7M14 36h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-        <path d="m5 18-3 2m33-2 3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-      </svg>
-      <span class="ambient-switch-copy">Lights off</span>
-    </button>
     <nav id="navbar">
       <div class="nav-logo">HZB<span>.</span></div>
       <ul class="nav-links">
@@ -101,7 +56,7 @@
             <a href="#projects" class="btn-primary">
               <span>View Projects</span><span>→</span>
             </a>
-            <button type="button" class="btn-outline reveal-replay" id="replay-reveal" aria-label="Turn the lamp off and blur the entire portfolio"><span aria-hidden="true">✦</span> Lights off</button>
+
             <a href="https://github.com/HamzaZahid172" target="_blank" class="btn-outline">
               <span>GitHub Profile</span><span>↗</span>
             </a>
@@ -398,7 +353,29 @@
           Projects that better represent my direction in software engineering,
           backend, data science, cloud and applied AI.
         </p>
-        <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
+
+        <div class="projects-lamp-console is-off" id="projects-lamp-console">
+          <div class="projects-lamp-intro">
+            <span class="projects-lamp-eyebrow">✦ INTERACTIVE PROJECT GALLERY</span>
+            <h3>See what I've built.</h3>
+            <p id="projects-light-status" role="status" aria-live="polite">The projects are in the dark. Click the lamp to reveal them.</p>
+          </div>
+          <button type="button" id="projects-lamp-switch" class="projects-lamp-switch"
+                  aria-controls="projects-light-stage" aria-pressed="false"
+                  aria-label="Switch on the lamp and reveal my engineering projects">
+            <span class="projects-lamp-art" aria-hidden="true">
+              <span class="projects-lamp-cord"></span>
+              <span class="projects-lamp-shade"></span>
+              <span class="projects-lamp-rim"></span>
+              <span class="projects-lamp-bulb"></span>
+              <span class="projects-lamp-beam"></span>
+              <span class="projects-lamp-glow"></span>
+            </span>
+            <span class="projects-lamp-switch-label" id="projects-lamp-switch-label">☀ Turn lights on</span>
+          </button>
+        </div>
+        <div class="projects-light-stage is-dark" id="projects-light-stage">
+          <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
           <article class="project-card reveal">
             <div class="project-icon" aria-hidden="true">🌱</div>
             <h3 class="project-name">GreenOps AI</h3>
@@ -464,6 +441,14 @@
             <div class="project-name">Engineering Automation Toolkit</div>
             <p class="project-desc">Reusable automation experience across Playwright, Puppeteer, Selenium and CI/CD. Positioned as software engineering tooling for reliable workflows rather than a QA-only specialization.</p>
             <div class="project-stack"><span class="stack-tag">Playwright</span><span class="stack-tag">Puppeteer</span><span class="stack-tag">TypeScript</span><span class="stack-tag">CI/CD</span></div>
+          </div>
+        </div>
+          <div class="projects-obscurer" aria-hidden="true">
+            <div class="projects-obscurer-message">
+              <span class="projects-obscurer-icon">✦</span>
+              <strong>Projects are hidden</strong>
+              <span>Switch on the lamp above to explore my work.</span>
+            </div>
           </div>
         </div>
       </div>
