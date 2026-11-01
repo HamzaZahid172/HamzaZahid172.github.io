@@ -269,3 +269,62 @@ body.reveal-scroll-locked { overflow: hidden; }
   .portfolio-reveal,.portfolio-reveal *,
   .portfolio-reveal *::before,.portfolio-reveal *::after { animation: none!important; transition: none!important; }
 }
+
+
+/* Reversible full-portfolio darkness, using the existing 20px backdrop blur. */
+.ambient-light-switch {
+  position: fixed;
+  z-index: 1200;
+  left: clamp(12px, 2vw, 28px);
+  bottom: clamp(16px, 2vw, 28px);
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  padding: .55rem .88rem .55rem .6rem;
+  border-radius: 100px;
+  color: #f4d093;
+  background: rgba(8, 13, 23, .95);
+  border: 1px solid rgba(241,199,127,.5);
+  box-shadow: 0 7px 24px rgba(0,0,0,.45),0 0 22px rgba(241,199,127,.14);
+  font: 600 .72rem/1.2 var(--font-body,monospace);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  backdrop-filter: blur(14px);
+  transition: transform .22s ease,background .22s ease,box-shadow .22s ease;
+}
+.ambient-light-switch:hover {
+  transform: translateY(-3px);
+  background: rgba(22,29,40,.98);
+  box-shadow: 0 10px 28px rgba(0,0,0,.47),0 0 30px rgba(241,199,127,.23);
+}
+.ambient-light-switch:focus-visible { outline: 2px solid #00d4ff; outline-offset: 4px; }
+.ambient-lamp-symbol {
+  display: block;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 5px rgba(255,200,110,.45));
+}
+.ambient-switch-copy { white-space: nowrap; }
+body.reveal-scroll-locked .ambient-light-switch { pointer-events: none; }
+.portfolio-reveal.is-turning-off {
+  opacity: 0;
+  visibility: visible;
+}
+.portfolio-reveal.is-turning-off .reveal-backdrop {
+  background: rgba(2,4,11,0);
+  -webkit-backdrop-filter: blur(0) brightness(1);
+  backdrop-filter: blur(0) brightness(1);
+}
+@media (max-width: 600px) {
+  .ambient-light-switch {
+    left: 12px;
+    bottom: 14px;
+    padding: .5rem .7rem .5rem .48rem;
+    font-size: .67rem;
+  }
+  .ambient-lamp-symbol { width: 28px; height: 28px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ambient-light-switch { transition: none!important; }
+}
