@@ -15,7 +15,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/lamp.css?v=20261101-scroll-glow-v3" />
+    <link rel="stylesheet" href="assets/css/lamp.css?v=20261101-hanging-lamp-v4" />
   </head>
   <body>
 
@@ -353,13 +353,12 @@
           backend, data science, cloud and applied AI.
         </p>
 
-        <!-- Compact centered sticky lamp controls the entire scrollable Projects gallery. -->
+        <!-- Free-hanging lamp: scrolls naturally away as projects move up. -->
         <div class="projects-light-scene is-lit" id="projects-light-scene">
-          <aside class="projects-lamp-rail" aria-label="Project gallery lighting">
-            <span class="projects-lamp-overline">PROJECT SHOWCASE / 07</span>
+          <div class="projects-lamp-mount">
             <button type="button" id="projects-lamp-switch" class="projects-lamp-switch"
-                    aria-controls="projects-light-stage" aria-pressed="true"
-                    aria-label="Switch off the lamp and dim project cards">
+                    aria-controls="projects-light-stage" aria-pressed="false"
+                    aria-label="Turn on the lamp and reveal all projects">
               <span class="projects-lamp-art" aria-hidden="true">
                 <span class="projects-lamp-cord"></span>
                 <span class="projects-lamp-shade"></span>
@@ -368,13 +367,13 @@
                 <span class="projects-lamp-halo"></span>
                 <span class="projects-lamp-beam"></span>
               </span>
-              <span class="projects-lamp-switch-label" id="projects-lamp-switch-label">TURN LIGHTS OFF</span>
+              <span class="projects-lamp-switch-label" id="projects-lamp-switch-label">TURN LIGHTS ON</span>
             </button>
-            <p id="projects-light-status" class="projects-lamp-status" role="status" aria-live="polite">Lights on. Explore my work.</p>
-            <span class="projects-lamp-footnote">SCROLL WITH THE LIGHT</span>
-          </aside>
+            <span class="projects-lamp-status" id="projects-light-status" role="status" aria-live="polite">
+              Lights off. Click the lamp to reveal my projects.
+            </span>
+          </div>
           <div class="projects-light-stage is-lit" id="projects-light-stage">
-            <div class="projects-light-ambient" aria-hidden="true"></div>
           <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
           <article class="project-card reveal">
             <div class="project-icon" aria-hidden="true">🌱</div>
@@ -524,6 +523,6 @@
       </div>
     </footer>
     <script src="assets/js/script.js" defer></script>
-    <script src="assets/js/lamp.js?v=20261101-scroll-glow-v3" defer></script>
+    <script src="assets/js/lamp.js?v=20261101-hanging-lamp-v4" defer></script>
   </body>
 </html>
