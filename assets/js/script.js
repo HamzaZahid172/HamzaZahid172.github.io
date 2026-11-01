@@ -34,7 +34,12 @@ function type() {
   }
   setTimeout(type, deleting ? 45 : 80);
 }
-type();
+const reducedMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+if (reducedMotionPreference.matches && el) {
+  el.textContent = "Backend · Cloud · Data · Applied AI";
+} else {
+  type();
+}
 
 /* --- Scroll reveal --- */
 const revealEls = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
@@ -117,4 +122,31 @@ window.addEventListener("scroll", () => {
     window.speechSynthesis.cancel();
     status.textContent = "Stopped.";
   });
+})();
+
+
+/* Accessible responsive navigation */
+(() => {
+  document.documentElement.classList.add("has-js");
+  const button=document.getElementById("mobile-menu-toggle");
+  const menu=document.getElementById("primary-navigation");
+  if(!button||!menu)return;
+
+  function setOpen(open){
+    menu.classList.toggle("is-open",open);
+    button.setAttribute("aria-expanded",String(open));
+    button.setAttribute("aria-label",open?"Close navigation menu":"Open navigation menu");
+  }
+  button.addEventListener("click",()=>setOpen(button.getAttribute("aria-expanded")!=="true"));
+  menu.querySelectorAll("a").forEach(link=>link.addEventListener("click",()=>setOpen(false)));
+  document.addEventListener("keydown",event=>{
+    if(event.key==="Escape"&&button.getAttribute("aria-expanded")==="true"){
+      setOpen(false);
+      button.focus();
+    }
+  });
+  document.addEventListener("pointerdown",event=>{
+    if(button.getAttribute("aria-expanded")==="true"&&!event.target.closest("#navbar"))setOpen(false);
+  });
+  window.addEventListener("resize",()=>{if(window.innerWidth>900)setOpen(false);},{passive:true});
 })();
