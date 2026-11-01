@@ -14,14 +14,50 @@
       href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
+    <meta name="theme-color" content="#080c12" />
+    <meta name="author" content="Hamza Zahid Butt" />
+    <link rel="canonical" href="https://hamzazahid172.github.io/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Hamza Zahid Butt | Engineering Portfolio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Hamza Zahid Butt | Senior Software Engineer" />
+    <meta property="og:description" content="7+ years building backend, cloud, automation and data systems. Explore GreenOps AI, AI Job Application OS, and an interactive engineering portfolio." />
+    <meta property="og:url" content="https://hamzazahid172.github.io/" />
+    <meta property="og:image" content="https://hamzazahid172.github.io/images/picture.jpg" />
+    <meta property="og:image:alt" content="Hamza Zahid Butt, Senior Software Engineer" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hamza Zahid Butt | Senior Software Engineer" />
+    <meta name="twitter:description" content="Backend, cloud, data and applied AI projects with an interactive engineering portfolio." />
+    <meta name="twitter:image" content="https://hamzazahid172.github.io/images/picture.jpg" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Hamza Zahid Butt",
+      "url": "https://hamzazahid172.github.io/",
+      "jobTitle": "Senior Software Engineer",
+      "description": "Software engineer focused on Python backend development, cloud, data systems and applied AI.",
+      "alumniOf": [{"@type":"CollegeOrUniversity","name":"Lahore Garrison University"}],
+      "sameAs": ["https://github.com/HamzaZahid172","https://www.linkedin.com/in/hamza-zahid-butt-a4201b166/"],
+      "knowsAbout": ["Python","FastAPI","TypeScript","Cloud Engineering","Data Engineering","RAG","AI Applications"]
+    }
+    </script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/lamp.css?v=20261101-hanging-lamp-v4" />
   </head>
   <body>
+    <a href="#hero" class="skip-link">Skip to main content</a>
 
     <nav id="navbar">
       <div class="nav-logo">HZB<span>.</span></div>
-      <ul class="nav-links">
+      <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle"
+              aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+        <span class="menu-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="primary-navigation">
         <li><a href="#about">About</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#experience">Experience</a></li>
@@ -46,20 +82,21 @@
             <span id="typed-text"></span><span class="typed-cursor"></span>
           </div>
           <p class="hero-desc">
-            7+ years building production software, data extraction systems,
-            backend workflows, automation platforms and cloud-integrated
-            applications. My current direction is backend engineering,
-            Python, data engineering, LLM applications and agentic AI.
+            I build reliable backend services, data pipelines and automation
+            systems, with 7+ years of professional software engineering
+            experience. Now applying Python, cloud engineering and LLM
+            technologies to practical, testable AI products.
           </p>
+          <p class="hero-proof">Explore real engineering projects, architecture notes and working demos below.</p>
           <div class="hero-actions">
             <a href="#projects" class="btn-primary">
               <span>View Projects</span><span>→</span>
             </a>
 
-            <a href="https://github.com/HamzaZahid172" target="_blank" class="btn-outline">
+            <a href="https://github.com/HamzaZahid172" target="_blank" rel="noopener noreferrer" class="btn-outline">
               <span>GitHub Profile</span><span>↗</span>
             </a>
-            <a href="cv/Hamza_Zahid_Butt_CV.pdf" target="_blank" class="btn-outline">Download CV</a>
+            <a href="cv/Hamza_Zahid_Butt_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn-outline">Download CV</a>
             <a href="mailto:zahidhamza172@gmail.com" class="btn-outline">Get in Touch</a>
           </div>
         </div>
@@ -373,11 +410,19 @@
               Lights off. Click the lamp to reveal my projects.
             </span>
           </div>
+          <p class="projects-quick-access"><span>Prefer a quick overview?</span> <button type="button" id="projects-show-all" class="projects-show-all">Show all projects without animation</button></p>
           <div class="projects-light-stage is-lit" id="projects-light-stage">
           <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
           <article class="project-card reveal">
             <div class="project-icon" aria-hidden="true">🌱</div>
             <h3 class="project-name">GreenOps AI</h3>
+            <figure class="project-evidence-media">
+              <img src="https://raw.githubusercontent.com/HamzaZahid172/greenops-ai/main/docs/images/dashboard.png"
+                   alt="GreenOps AI application dashboard captured in the public project repository"
+                   loading="lazy" decoding="async" width="960" height="540" />
+              <figcaption>Actual project screenshot · GreenOps AI</figcaption>
+            </figure>
+            <p class="project-evidence-note"><strong>Engineering proof:</strong> Local AI agent, RAG knowledge base, repeatable evaluation and observability.</p>
             <p class="project-desc">An open-source platform that analyzes cloud and AI workload configurations, identifies resource inefficiencies, estimates carbon impact and recommends lower-carbon execution windows. Built as an end-to-end local AI engineering project.</p>
             <ul class="timeline-bullets">
               <li>Workload analysis, carbon-intensity lookup and carbon-aware scheduling for flexible compute workloads.</li>
@@ -394,6 +439,16 @@
           <article class="project-card reveal">
             <div class="project-icon" aria-hidden="true">🎯</div>
             <h3 class="project-name">AI Job Application OS</h3>
+            <figure class="project-evidence-media">
+              <a href="https://youtu.be/QiObEz8mIns" target="_blank" rel="noopener noreferrer" aria-label="Watch the AI Job Application OS demo on YouTube">
+                <img src="https://i.ytimg.com/vi/QiObEz8mIns/hqdefault.jpg"
+                     alt="AI Job Application OS demo video thumbnail"
+                     loading="lazy" decoding="async" width="480" height="360" />
+                <span class="project-play-overlay" aria-hidden="true">▶ Watch demo</span>
+              </a>
+              <figcaption>Working project demo · AI CV matching</figcaption>
+            </figure>
+            <p class="project-evidence-note"><strong>Engineering proof:</strong> Explainable match scores, local LLM fallback, duplicate prevention and tests.</p>
             <p class="project-desc">A local-first AI application that parses PDF CVs, extracts job requirements and calculates explainable candidate-to-job match scores. It identifies skill gaps and generates tailored cover letters for human review.</p>
             <ul class="timeline-bullets">
               <li>Browser-based CV uploads, Ollama job-description parsing and a deterministic fallback when the local LLM is unavailable.</li>
@@ -412,6 +467,7 @@
             <div class="project-name">AI Assistant / LLM API Application</div>
             <p class="project-desc">Built and deployed API-driven AI experiments using Python, FastAPI, LLM APIs and Docker. Focused on practical integration patterns and conversational application workflows.</p>
             <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">FastAPI</span><span class="stack-tag">LLM API</span><span class="stack-tag">Docker</span></div>
+            <div class="project-proof-actions"><a class="project-proof-link" href="mailto:zahidhamza172@gmail.com?subject=AI%20assistant%20project%20details">Ask about implementation ↗</a></div>
           </div>
 
           <div class="project-card reveal">
@@ -419,6 +475,7 @@
             <div class="project-name">Salary Prediction — Machine Learning</div>
             <p class="project-desc">Hands-on machine learning project using regression, data preparation and model evaluation to predict salary values from structured features.</p>
             <div class="project-stack"><span class="stack-tag">Python</span><span class="stack-tag">Pandas</span><span class="stack-tag">Scikit-learn</span><span class="stack-tag">Jupyter</span></div>
+            <div class="project-proof-actions"><a class="project-proof-link" href="https://github.com/HamzaZahid172/salary-prediction-tensorflow" target="_blank" rel="noopener noreferrer">View ML repository ↗</a></div>
           </div>
 
           <div class="project-card reveal">
@@ -426,6 +483,7 @@
             <div class="project-name">Healthcare Data Engineering Platform</div>
             <p class="project-desc">Production data extraction and transformation workflows combining TypeScript, browser automation, Python parsing and API-based downstream delivery.</p>
             <div class="project-stack"><span class="stack-tag">TypeScript</span><span class="stack-tag">Python</span><span class="stack-tag">REST APIs</span><span class="stack-tag">Data Pipelines</span></div>
+            <div class="project-proof-actions"><a class="project-proof-link" href="https://github.com/HamzaZahid172/ai-ready-data-platform" target="_blank" rel="noopener noreferrer">Related public data platform ↗</a></div>
           </div>
 
           <div class="project-card reveal">
@@ -433,6 +491,7 @@
             <div class="project-name">Import.io Data Intelligence Solutions</div>
             <p class="project-desc">Delivered 15+ production data extraction, validation and reporting solutions integrating Node.js, Python, APIs, monitoring and cloud workflows.</p>
             <div class="project-stack"><span class="stack-tag">Node.js</span><span class="stack-tag">Python</span><span class="stack-tag">AWS</span><span class="stack-tag">REST APIs</span></div>
+            <div class="project-proof-actions"><a class="project-proof-link" href="#experience">View professional experience ↗</a></div>
           </div>
 
           <div class="project-card reveal">
@@ -440,6 +499,7 @@
             <div class="project-name">Engineering Automation Toolkit</div>
             <p class="project-desc">Reusable automation experience across Playwright, Puppeteer, Selenium and CI/CD. Positioned as software engineering tooling for reliable workflows rather than a QA-only specialization.</p>
             <div class="project-stack"><span class="stack-tag">Playwright</span><span class="stack-tag">Puppeteer</span><span class="stack-tag">TypeScript</span><span class="stack-tag">CI/CD</span></div>
+            <div class="project-proof-actions"><a class="project-proof-link" href="https://github.com/HamzaZahid172/playwright-demo" target="_blank" rel="noopener noreferrer">View Playwright example ↗</a></div>
           </div>
             </div>
           </div>
@@ -494,11 +554,11 @@
               <div class="contact-link-icon">✉️</div>
               <div><div class="contact-link-label">Email</div><div class="contact-link-value">zahidhamza172@gmail.com</div></div>
             </a>
-            <a href="https://linkedin.com/in/hamza-zahid-butt-a4201b166" target="_blank" class="contact-link">
+            <a href="https://linkedin.com/in/hamza-zahid-butt-a4201b166" target="_blank" rel="noopener noreferrer" class="contact-link">
               <div class="contact-link-icon">💼</div>
               <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-value">linkedin.com/in/hamza-zahid-butt-a4201b166</div></div>
             </a>
-            <a href="https://github.com/HamzaZahid172" target="_blank" class="contact-link">
+            <a href="https://github.com/HamzaZahid172" target="_blank" rel="noopener noreferrer" class="contact-link">
               <div class="contact-link-icon">🐙</div>
               <div><div class="contact-link-label">GitHub</div><div class="contact-link-value">github.com/HamzaZahid172</div></div>
             </a>
@@ -517,8 +577,8 @@
       <div class="footer-logo">HZB<span>.</span></div>
       <span>© 2026 Hamza Zahid Butt · Germany</span>
       <div style="display:flex;gap:1.5rem">
-        <a href="https://linkedin.com/in/hamza-zahid-butt-a4201b166" target="_blank">LinkedIn</a>
-        <a href="https://github.com/HamzaZahid172" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/hamza-zahid-butt-a4201b166" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://github.com/HamzaZahid172" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="mailto:zahidhamza172@gmail.com">Email</a>
       </div>
     </footer>
