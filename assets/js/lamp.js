@@ -1,42 +1,54 @@
-/* A side-mounted lamp lights the existing Projects gallery progressively. */
+/* Scroll-following project lighting: entire gallery always lit when ON. */
 (() => {
-  const scene = document.getElementById("projects-light-scene");
-  const toggle = document.getElementById("projects-lamp-switch");
-  const stage = document.getElementById("projects-light-stage");
-  const grid = stage && stage.querySelector(".projects-grid");
-  const label = document.getElementById("projects-lamp-switch-label");
-  const status = document.getElementById("projects-light-status");
-  if (!scene || !toggle || !stage || !grid || !label || !status) return;
+  const scene=document.getElementById("projects-light-scene");
+  const stage=document.getElementById("projects-light-stage");
+  const lamp=document.getElementById("projects-lamp-switch");
+  const grid=stage&&stage.querySelector(".projects-grid");
+  const label=document.getElementById("projects-lamp-switch-label");
+  const status=document.getElementById("projects-light-status");
+  if(!scene||!stage||!lamp||!grid||!label||!status)return;
 
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let lit = false;
+  const cards=[...grid.querySelectorAll(".project-card")];
+  const reduced=window.matchMedia("(prefers-reduced-motion: reduce)");
+  let lit=false;
+  let framePending=false;
 
-  [...grid.querySelectorAll(".project-card")].forEach((card,index) => {
-    // Ripple the light from the lamp toward the cards.
-    card.style.setProperty("--light-delay",
-      reduceMotion.matches ? "0ms" : (Math.min(index,6)*95)+"ms");
+  cards.forEach((card,index)=>{
+    card.style.setProperty("--light-delay",reduced.matches?"0ms":(index*65)+"ms");
   });
+  function moveGlow(){
+    framePending=false;
+    if(!lit)return;
+    const rect=stage.getBoundingClientRect();
+    const y=Math.max(0,Math.min(rect.height,window.innerHeight*.43-rect.top));
+    stage.style.setProperty("--glow-y",y+"px");
+  }
+  function onViewportChange(){
+    if(!lit||framePending)return;
+    framePending=true;
+    window.requestAnimationFrame(moveGlow);
+  }
+  if("IntersectionObserver" in window){
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>entry.target.classList.toggle("in-spotlight",entry.isIntersecting));
+    },{rootMargin:"-75px 0px -8% 0px",threshold:.08});
+    cards.forEach(card=>observer.observe(card));
+  }
 
-  function render() {
+  function render(){
     scene.classList.toggle("is-on",lit);
     scene.classList.toggle("is-off",!lit);
     stage.classList.toggle("is-lit",lit);
     stage.classList.toggle("is-dark",!lit);
-    toggle.setAttribute("aria-pressed",String(lit));
-    toggle.setAttribute("aria-label",lit
-      ? "Switch the lamp off and dim the projects"
-      : "Switch the lamp on and illuminate the projects");
-    label.textContent = lit ? "TURN LIGHTS OFF" : "TURN LIGHTS ON";
-    status.textContent = lit
-      ? "Lights on. Explore my work."
-      : "Lights off. Click the lamp to reveal my work.";
-    // Prevent clicking or tabbing into project links while they are unreadable.
-    grid.inert = !lit;
+    lamp.setAttribute("aria-pressed",String(lit));
+    lamp.setAttribute("aria-label",lit?"Turn off the lamp and blur all projects":"Turn on the lamp and reveal all projects");
+    label.textContent=lit?"TURN LIGHTS OFF":"TURN LIGHTS ON";
+    status.textContent=lit?"All projects stay illuminated as you scroll.":"Tap the lamp to illuminate all seven projects.";
+    grid.inert=!lit;
+    if(lit)onViewportChange();
   }
-
-  toggle.addEventListener("click", () => {
-    lit = !lit;
-    render();
-  });
+  lamp.addEventListener("click",()=>{lit=!lit;render();});
+  window.addEventListener("scroll",onViewportChange,{passive:true});
+  window.addEventListener("resize",onViewportChange,{passive:true});
   render();
 })();
