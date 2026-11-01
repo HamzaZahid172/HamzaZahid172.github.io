@@ -1,410 +1,244 @@
-/* A side-mounted lamp casts light directly onto the actual project cards.
-   Only the Projects gallery changes; the rest of the portfolio is untouched. */
-#projects {scroll-margin-top:80px;}
+/* HANGING PROJECT LAMP — the lamp moves naturally with the document.
+   No floating boundary panel, no sticky control and no fixed-height lighting cutoff. */
+#projects {
+  scroll-margin-top: 85px;
+}
 #projects .projects-light-scene {
-  position:relative;
-  isolation:isolate;
-  display:grid;
-  grid-template-columns:174px minmax(0,1fr);
-  align-items:start;
-  gap:clamp(18px,2.5vw,32px);
+  position: relative;
+  isolation: isolate;
+  display: block;
 }
-/* Warm diagonal light travels from the left rail into the project cards. */
-#projects .projects-light-scene::before {
-  content:"";
-  position:absolute;
-  z-index:2;
-  pointer-events:none;
-  top:145px;
-  left:115px;
-  width:calc(100% - 115px);
-  height:750px;
-  background:linear-gradient(109deg,rgba(249,192,99,.19),rgba(251,185,80,.085) 44%,transparent 91%);
-  clip-path:polygon(0 0,100% 25%,100% 97%,0 40%);
-  opacity:0;
-  transform:scale(.7);
-  transform-origin:top left;
-  transition:opacity .9s,transform 1.15s cubic-bezier(.22,.7,.25,1);
-}
-#projects .projects-light-scene.is-on::before {opacity:1;transform:scale(1);}
-#projects .projects-lamp-rail {
-  position:sticky;
-  z-index:5;
-  top:117px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  min-height:388px;
-  padding:0 7px 14px;
-  border-right:1px solid rgba(255,255,255,.065);
-  text-align:center;
-}
-#projects .projects-lamp-overline {
-  align-self:stretch;
-  text-align:left;
-  color:#c8aa7c;
-  font:400 .55rem/1.6 var(--font-body,monospace);
-  letter-spacing:.1em;
-  margin-bottom:15px;
+/* The lamp itself hangs in open space, independent of the project cards. */
+#projects .projects-lamp-mount {
+  position: relative; /* deliberately NOT sticky */
+  z-index: 5;
+  width: min(100%, 200px);
+  height: 181px;
+  margin: 10px auto 23px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  overflow: visible;
 }
 #projects .projects-lamp-switch {
-  display:block;
-  position:relative;
-  flex:none;
-  width:155px;
-  height:254px;
-  padding:0;
-  border:0;
-  background:transparent;
-  cursor:pointer;
-  color:#efd4a8;
-  -webkit-tap-highlight-color:transparent;
+  position: relative;
+  display: block;
+  width: 156px;
+  height: 180px;
+  padding: 0;
+  background: none;
+  border: 0;
+  color: #f3cb8b;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
-#projects .projects-lamp-switch:focus-visible{outline:2px solid #00d4ff;outline-offset:3px;border-radius:12px;}
-#projects .projects-lamp-art{position:absolute;inset:0;pointer-events:none;}
+#projects .projects-lamp-switch:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 4px;
+  border-radius: 12px;
+}
+#projects .projects-lamp-art {
+  position: absolute;
+  inset: 0;
+  display: block;
+  pointer-events: none;
+}
 #projects .projects-lamp-cord {
-  position:absolute;
-  top:-9px;left:calc(50% - 2px);
-  width:4px;height:110px;
-  border-radius:3px;
-  background:linear-gradient(90deg,#242832,#70747e,#1d222b);
+  position: absolute;
+  top: -31px;
+  left: calc(50% - 1.5px);
+  width: 3px;
+  height: 89px;
+  border-radius: 2px;
+  background: linear-gradient(90deg,#272b35,#888c94,#272b35);
 }
 #projects .projects-lamp-shade {
-  position:absolute;z-index:3;
-  top:70px;left:50%;
-  width:142px;height:70px;
-  transform:translateX(-50%);
-  clip-path:polygon(31% 0,69% 0,100% 100%,0 100%);
-  background:linear-gradient(108deg,#10141d,#3f454f 46%,#555861 55%,#171b23);
-  filter:drop-shadow(0 7px 7px rgba(0,0,0,.6));
+  position: absolute;
+  z-index: 3;
+  top: 50px;
+  left: 50%;
+  width: 120px;
+  height: 61px;
+  transform: translateX(-50%);
+  clip-path: polygon(34% 0,66% 0,100% 100%,0 100%);
+  background: linear-gradient(106deg,#121720,#383f49 38%,#5c5e66 54%,#181b23);
+  filter: drop-shadow(0 8px 12px rgba(0,0,0,.55));
 }
 #projects .projects-lamp-rim {
-  position:absolute;z-index:4;
-  top:135px;left:50%;
-  width:142px;height:9px;
-  transform:translateX(-50%);
-  border-radius:50%;
-  background:#444951;
-  border:1px solid #777a81;
-  transition:background .7s;
+  position: absolute;
+  z-index: 4;
+  top: 107px;
+  left: 50%;
+  width: 120px;
+  height: 8px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  background: #454951;
+  border: 1px solid #656c73;
+  transition: background .65s ease;
 }
 #projects .projects-lamp-bulb {
-  position:absolute;z-index:3;
-  top:138px;left:calc(50% - 15px);
-  width:30px;height:19px;
-  border-radius:0 0 55% 55%;
-  background:#5d646c;
-  transition:background .6s,box-shadow .6s;
+  position: absolute;
+  z-index: 3;
+  top: 111px;
+  left: calc(50% - 13px);
+  width: 26px;
+  height: 17px;
+  border-radius: 0 0 55% 55%;
+  background: #535c67;
+  transition: background .6s ease,box-shadow .6s ease;
 }
 #projects .projects-lamp-halo {
-  position:absolute;z-index:1;
-  top:107px;left:-17px;
-  width:190px;height:190px;
-  border-radius:50%;
-  background:radial-gradient(circle,rgba(255,198,102,.42),transparent 68%);
-  filter:blur(18px);
-  opacity:0;
-  transition:opacity .9s;
-}
-#projects .projects-lamp-beam {
-  position:absolute;z-index:2;
-  top:150px;left:-86px;
-  width:328px;height:286px;
-  background:linear-gradient(180deg,rgba(255,209,125,.44),rgba(249,189,94,.07) 74%,transparent);
-  clip-path:polygon(47% 0,53% 0,100% 100%,0 100%);
-  filter:blur(7px);
-  opacity:0;
-  transition:opacity .95s;
-}
-#projects .projects-light-scene.is-on .projects-lamp-rim{background:#b58e54;}
-#projects .projects-light-scene.is-on .projects-lamp-bulb{
-  background:#ffdea3;
-  box-shadow:0 0 19px 8px rgba(255,196,99,.8),0 0 52px 21px rgba(245,174,73,.3);
-}
-#projects .projects-light-scene.is-on .projects-lamp-halo,
-#projects .projects-light-scene.is-on .projects-lamp-beam{opacity:1;}
-#projects .projects-lamp-switch-label {
-  position:absolute;z-index:6;
-  bottom:1px;left:50%;
-  transform:translateX(-50%);
-  padding:9px 12px;
-  border:1px solid rgba(244,198,126,.45);
-  border-radius:100px;
-  background:#121824;
-  color:#ffda9d;
-  font:600 .58rem/1.2 var(--font-body,monospace);
-  white-space:nowrap;
-  letter-spacing:.03em;
-}
-#projects .projects-lamp-switch:hover .projects-lamp-switch-label{background:#322517;border-color:#f1ba70;}
-#projects .projects-lamp-status{
-  margin:9px 0;
-  min-height:40px;
-  color:#abb5c3;
-  font:400 .62rem/1.7 var(--font-body,monospace);
-}
-#projects .projects-lamp-footnote {
-  color:#6f8196;
-  letter-spacing:.1em;
-  font:400 .51rem/1.5 var(--font-body,monospace);
-}
-#projects .projects-light-stage {
-  position:relative;
-  z-index:1;
-  isolation:isolate;
-  min-width:0;
-  border-radius:15px;
-  background:radial-gradient(ellipse at 0 0,rgba(243,186,87,.025),transparent 65%);
-  transition:background .85s;
-}
-#projects .projects-light-stage.is-lit {
-  background:radial-gradient(ellipse at 0 0,rgba(243,186,87,.13),transparent 65%);
-}
-#projects .projects-light-ambient {
-  position:absolute;z-index:-1;
-  inset:-12px;
-  pointer-events:none;
-  border-radius:16px;
-  opacity:0;
-  background:radial-gradient(ellipse at 8% 7%,rgba(245,187,97,.15),transparent 78%);
-  transition:opacity 1s;
-}
-#projects .projects-light-scene.is-on .projects-light-ambient{opacity:1;}
-/* Darken the existing cards, not a separate rectangle that hides them. */
-#projects .projects-light-stage .project-card {
-  filter:blur(8px) brightness(.15) saturate(.25);
-  opacity:.48;
-  transition:
-    filter .9s ease var(--light-delay,0ms),
-    opacity .9s ease var(--light-delay,0ms),
-    transform .4s ease,
-    border-color .35s ease,
-    box-shadow .35s ease;
-}
-#projects .projects-light-stage.is-lit .project-card{
-  filter:blur(0) brightness(1) saturate(1);
-  opacity:1;
-}
-#projects .projects-light-stage.is-lit .project-card:hover {
-  border-color:rgba(250,195,104,.52);
-  box-shadow:0 14px 35px rgba(244,174,79,.1);
-}
-#projects .projects-light-stage.is-dark .projects-grid{pointer-events:none;}
-#projects .projects-light-stage.is-dark .project-card{transform:translateY(8px);}
-@media(max-width:900px) {
-  #projects .projects-light-scene{grid-template-columns:148px minmax(0,1fr);gap:16px;}
-  #projects .projects-lamp-rail{top:98px;}
-  #projects .projects-lamp-switch{transform:scale(.89);transform-origin:top center;margin-bottom:-26px;}
-}
-@media(max-width:640px) {
-  #projects .projects-light-scene{grid-template-columns:1fr;gap:14px;}
-  #projects .projects-lamp-rail {
-    position:relative;top:auto;
-    min-height:208px;
-    display:grid;
-    grid-template-columns:minmax(0,1fr) 148px;
-    grid-template-rows:auto 1fr auto;
-    align-items:center;
-    text-align:left;
-    border-right:0;
-    border-bottom:1px solid rgba(255,255,255,.07);
-    padding:0 0 14px;
-  }
-  #projects .projects-lamp-overline{grid-column:1;grid-row:1;}
-  #projects .projects-lamp-switch{grid-column:2;grid-row:1/4;transform:scale(.85);transform-origin:top right;}
-  #projects .projects-lamp-status{grid-column:1;grid-row:2;align-self:center;}
-  #projects .projects-lamp-footnote{grid-column:1;grid-row:3;}
-  #projects .projects-light-scene::before{left:25%;top:150px;width:75%;height:550px;}
-  #projects .projects-light-stage .projects-grid{grid-template-columns:1fr!important;}
-}
-@media(prefers-reduced-motion:reduce){
-  #projects .projects-light-scene::before,
-  #projects .projects-light-stage,
-  #projects .projects-light-stage .project-card,
-  #projects .projects-lamp-bulb,
-  #projects .projects-lamp-rim,
-  #projects .projects-lamp-halo,
-  #projects .projects-lamp-beam{transition:none!important;}
-}
-
-
-/* ── v3: a COMPACT CENTER LAMP with light that continues on every row ──
-   This supersedes the old left rail and its fixed 750px diagonal beam. */
-#projects .projects-light-scene {
-  display: block;
-  grid-template-columns: none;
-}
-#projects .projects-light-scene::before,
-#projects .projects-light-scene.is-on::before {
-  content: none;
+  position: absolute;
+  z-index: 1;
+  top: 89px;
+  left: calc(50% - 105px);
+  width: 210px;
+  height: 165px;
+  border-radius: 50%;
+  background: radial-gradient(circle,rgba(255,196,102,.42),transparent 74%);
+  filter: blur(20px);
   opacity: 0;
-}
-#projects .projects-lamp-rail {
-  position: sticky;
-  top: 72px;
-  z-index: 28;
-  box-sizing: border-box;
-  width: min(100%, 720px);
-  min-height: 140px;
-  height: 140px;
-  margin: 0 auto 20px;
-  padding: 5px clamp(12px,3vw,25px);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  text-align: left;
-  gap: 16px;
-  border: 1px solid rgba(244,188,104,.24);
-  border-radius: 16px;
-  background: linear-gradient(105deg,rgba(13,18,27,.97),rgba(27,27,28,.96),rgba(12,17,27,.97));
-  box-shadow: 0 12px 33px rgba(0,0,0,.35);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
-}
-#projects .projects-light-scene.is-on .projects-lamp-rail {
-  border-color: rgba(245,192,110,.48);
-  background: linear-gradient(110deg,rgba(27,26,25,.97),rgba(54,42,27,.96),rgba(19,23,31,.97));
-}
-#projects .projects-lamp-overline {
-  align-self: center;
-  flex: 1 1 165px;
-  margin: 0;
-  max-width: 190px;
-  font-size: .58rem;
-  line-height: 1.7;
-}
-#projects .projects-lamp-footnote { display: none; }
-#projects .projects-lamp-status {
-  flex: 1 1 180px;
-  max-width: 190px;
-  min-height: 0;
-  margin: 0;
-  font-size: .64rem;
-  line-height: 1.75;
-}
-#projects .projects-lamp-switch {
-  flex: 0 0 112px;
-  width: 112px;
-  height: 140px;
-  margin: 0;
-  transform: none;
-  transform-origin: center center;
-}
-#projects .projects-lamp-cord {top:-10px;left:calc(50% - 1px);width:2px;height:48px;}
-#projects .projects-lamp-shade {top:25px;width:98px;height:49px;}
-#projects .projects-lamp-rim {top:72px;width:98px;height:7px;}
-#projects .projects-lamp-bulb {top:76px;left:calc(50% - 12px);width:24px;height:15px;}
-#projects .projects-lamp-halo {top:60px;left:calc(50% - 87px);width:174px;height:126px;}
-#projects .projects-lamp-beam {
-  top:86px;
-  left:calc(50% - 95px);
-  width:190px;
-  height:125px;
-  background:linear-gradient(180deg,rgba(255,206,119,.38),rgba(250,187,88,.06) 70%,transparent);
-}
-#projects .projects-lamp-switch-label {
-  bottom:1px;
-  padding:6px 9px;
-  font-size:.53rem;
-}
-#projects .projects-light-stage {
-  --glow-y: 240px;
-  isolation: isolate;
-  min-height: 320px;
-  width: 100%;
-  background: transparent;
-}
-#projects .projects-light-stage.is-lit {
-  background: transparent;
-}
-/* An ambient spotlight moves to the currently viewed rows on scroll. */
-#projects .projects-light-stage::before {
-  content:"";
-  position:absolute;
-  z-index:0;
-  inset:0;
-  border-radius:16px;
-  pointer-events:none;
-  opacity:0;
-  background:
-    radial-gradient(ellipse 58% 440px at 50% var(--glow-y),
-      rgba(252,194,104,.18) 0%,rgba(252,194,104,.06) 53%,transparent 89%),
-    linear-gradient(180deg,rgba(252,190,99,.055),transparent 48%,rgba(252,190,99,.04) 100%);
   transition: opacity .8s ease;
 }
-#projects .projects-light-stage.is-lit::before {opacity:1;}
-#projects .projects-light-ambient {display:none;}
-#projects .projects-light-stage .projects-grid {
-  position:relative;
-  z-index:1;
+#projects .projects-lamp-beam {
+  position: absolute;
+  z-index: 1;
+  top: 120px;
+  left: calc(50% - 225px);
+  width: 450px;
+  height: 300px;
+  clip-path: polygon(48% 0,52% 0,100% 100%,0 100%);
+  background: linear-gradient(180deg,rgba(255,210,129,.37),rgba(255,195,102,.105) 47%,transparent);
+  filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .95s ease;
 }
-/* Every project becomes legible when ON, not just those under the top beam. */
+#projects .projects-lamp-switch-label {
+  position: absolute;
+  z-index: 6;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d9bb89;
+  background: transparent;
+  border: 0;
+  padding: 4px 0;
+  font: 600 .57rem/1.4 var(--font-body,monospace);
+  letter-spacing: .1em;
+  white-space: nowrap;
+  transition: color .3s ease;
+}
+#projects .projects-lamp-switch:hover .projects-lamp-switch-label,
+#projects .projects-lamp-switch:focus-visible .projects-lamp-switch-label {
+  color: #ffe1a9;
+  text-shadow: 0 0 14px rgba(255,196,109,.48);
+}
+#projects .projects-lamp-status {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+#projects .projects-light-scene.is-on .projects-lamp-rim { background: #ba935e; }
+#projects .projects-light-scene.is-on .projects-lamp-bulb {
+  background: #ffe1aa;
+  box-shadow: 0 0 20px 8px rgba(255,201,107,.82),
+              0 0 55px 23px rgba(246,179,75,.3);
+}
+#projects .projects-light-scene.is-on .projects-lamp-halo,
+#projects .projects-light-scene.is-on .projects-lamp-beam { opacity: 1; }
+
+/* Warm light continues below the hanging lamp into every gallery row. */
+#projects .projects-light-stage {
+  --glow-y: 230px;
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  min-height: 300px;
+  background: transparent;
+}
+#projects .projects-light-stage::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 18px;
+  opacity: 0;
+  background:
+    radial-gradient(ellipse 78% 520px at 50% var(--glow-y),
+      rgba(255,193,97,.16),rgba(250,184,83,.045) 60%,transparent 92%),
+    linear-gradient(to bottom,
+      rgba(245,180,88,.10) 0%,
+      rgba(241,175,82,.045) 24%,
+      rgba(241,175,82,.04) 72%,
+      rgba(245,180,88,.09) 100%);
+  transition: opacity .85s ease;
+}
+#projects .projects-light-stage.is-lit::before { opacity: 1; }
+#projects .projects-light-stage .projects-grid {
+  position: relative;
+  z-index: 1;
+}
+/* Darkness is applied to the real cards, never a large opaque cover. */
 #projects .projects-light-stage .project-card {
-  filter:blur(9px) brightness(.14) saturate(.3);
-  opacity:.5;
-  background:rgba(16,23,32,.8);
+  filter: blur(9px) brightness(.16) saturate(.3);
+  opacity: .48;
   transition:
     filter .85s ease var(--light-delay,0ms),
     opacity .85s ease var(--light-delay,0ms),
-    background .6s ease,
     transform .35s ease,
     border-color .35s ease,
-    box-shadow .35s ease;
+    box-shadow .35s ease,
+    background .55s ease;
 }
+#projects .projects-light-stage.is-dark .projects-grid { pointer-events: none; }
 #projects .projects-light-stage.is-lit .project-card {
-  filter:none;
-  opacity:1;
-  background:linear-gradient(160deg,rgba(246,180,90,.1),rgba(22,28,38,.93) 32%,rgba(14,19,28,.93));
-  border-color:rgba(246,191,106,.26);
-  box-shadow:0 9px 31px rgba(0,0,0,.19),inset 0 1px 0 rgba(247,218,168,.05);
+  filter: none;
+  opacity: 1;
+  background: linear-gradient(155deg,
+    rgba(249,187,95,.08),rgba(22,29,39,.9) 34%,rgba(15,20,30,.95));
+  border-color: rgba(242,191,112,.23);
+  box-shadow: 0 10px 27px rgba(0,0,0,.16);
 }
 #projects .projects-light-stage.is-lit .project-card.in-spotlight {
-  border-color:rgba(251,199,118,.5);
-  box-shadow:0 12px 35px rgba(248,184,99,.13),inset 0 1px 0 rgba(255,223,174,.13);
+  border-color: rgba(251,199,118,.45);
+  box-shadow: 0 12px 36px rgba(243,171,77,.11);
 }
 #projects .projects-light-stage.is-lit .project-card:hover {
-  border-color:rgba(251,199,118,.76);
-  box-shadow:0 16px 42px rgba(248,184,99,.2);
+  border-color: rgba(251,199,118,.74);
+  box-shadow: 0 16px 42px rgba(248,184,99,.18);
+  transform: translateY(-3px);
 }
-#projects .projects-light-stage.is-dark .project-card {transform:none;}
-@media (max-width:900px) {
-  #projects .projects-lamp-rail {top:68px;}
-  #projects .projects-lamp-switch {transform:none;margin:0;}
+@media (max-width: 640px) {
+  #projects .projects-lamp-mount { height: 160px; margin: 7px auto 18px; }
+  #projects .projects-lamp-switch { width: 134px; height: 158px; }
+  #projects .projects-lamp-cord { top: -30px; height: 79px; }
+  #projects .projects-lamp-shade { top: 40px; width: 103px; height: 54px; }
+  #projects .projects-lamp-rim { top: 91px; width: 103px; }
+  #projects .projects-lamp-bulb { top: 95px; }
+  #projects .projects-lamp-halo { top: 75px; left: calc(50% - 85px); width: 170px; }
+  #projects .projects-lamp-beam { top: 105px; left: calc(50% - 145px); width: 290px; height: 215px; }
+  #projects .projects-lamp-switch-label { font-size: .55rem; }
+  #projects .projects-light-stage .projects-grid { grid-template-columns: 1fr!important; }
 }
-@media (max-width:640px) {
-  #projects .projects-light-scene {display:block;grid-template-columns:none;}
-  #projects .projects-lamp-rail {
-    position:sticky;
-    top:62px;
-    width:100%;
-    min-height:125px;
-    height:125px;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    gap:9px;
-    padding:4px 10px;
-    border-right:1px solid rgba(244,188,104,.24);
-    border-bottom:1px solid rgba(244,188,104,.24);
-    text-align:left;
-  }
-  #projects .projects-lamp-overline {display:block;flex:1 1 80px;grid-column:auto;grid-row:auto;font-size:.49rem;letter-spacing:.04em;}
-  #projects .projects-lamp-switch {grid-column:auto;grid-row:auto;flex:0 0 101px;width:101px;height:120px;transform:none;margin:0;}
-  #projects .projects-lamp-shade {top:18px;width:85px;height:43px;}
-  #projects .projects-lamp-rim {top:59px;width:85px;}
-  #projects .projects-lamp-bulb {top:62px;}
-  #projects .projects-lamp-cord {height:39px;}
-  #projects .projects-lamp-halo {top:44px;}
-  #projects .projects-lamp-beam {top:71px;}
-  #projects .projects-lamp-status {grid-column:auto;grid-row:auto;align-self:center;flex:1 1 125px;font-size:.51rem;line-height:1.55;}
-  #projects .projects-light-stage .projects-grid {grid-template-columns:1fr!important;}
-}
-@media (max-width:390px) {
-  #projects .projects-lamp-overline {display:none;}
-  #projects .projects-lamp-rail {justify-content:center;}
-  #projects .projects-lamp-status {max-width:150px;}
-}
-@media (prefers-reduced-motion:reduce) {
-  #projects .projects-light-stage::before {transition:none!important;}
+@media (prefers-reduced-motion: reduce) {
+  #projects .projects-lamp-rim,
+  #projects .projects-lamp-bulb,
+  #projects .projects-lamp-halo,
+  #projects .projects-lamp-beam,
+  #projects .projects-light-stage::before,
+  #projects .projects-light-stage .project-card { transition: none!important; }
 }
