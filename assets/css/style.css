@@ -1235,14 +1235,6 @@ footer a:hover {
   font:600 .62rem/1.5 var(--font-body,monospace);
 }
 .project-proof-link:hover{background:rgba(0,212,255,.09);}
-.projects-quick-access{
-  margin:0 0 1rem;display:flex;align-items:center;justify-content:center;
-  gap:.55rem;flex-wrap:wrap;color:#9fb5c5;font:400 .64rem/1.7 var(--font-body,monospace);
-}
-.projects-show-all{
-  border:0;background:transparent;color:#9ce8fa;text-decoration:underline;
-  text-underline-offset:3px;font:600 .64rem/1.5 var(--font-body,monospace);cursor:pointer;
-}
 @media(max-width:900px){
   nav{flex-wrap:wrap;gap:.7rem;}
   .has-js .mobile-menu-toggle{
