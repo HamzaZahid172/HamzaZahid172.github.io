@@ -47,7 +47,8 @@
     }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/lamp.css?v=20261101-pull-cord-v5" />
+    <link rel="stylesheet" href="assets/css/lamp.css?v=20261101-clean-toggle-v6" />
+    <noscript><style>#projects .projects-lamp-mount{display:none!important}#projects .projects-light-stage .project-card{filter:none!important;opacity:1!important}#projects .projects-light-stage .projects-grid{pointer-events:auto!important}</style></noscript>
   </head>
   <body>
     <a href="#hero" class="skip-link">Skip to main content</a>
@@ -388,7 +389,7 @@
       <div class="max-w">
         <p class="section-label reveal">04 — Projects</p>
         <h2 class="section-title reveal">Selected <em>Engineering Projects</em></h2>
-        <!-- Realistic hanging lamp with a draggable pull cord; the lamp scrolls naturally. -->
+        <!-- Free-hanging decorative lamp with a compact on/off switch; scrolls naturally. -->
         <div class="projects-light-scene is-lit" id="projects-light-scene">
           <div class="projects-lamp-mount">
             <div class="projects-lamp-switch" aria-hidden="true">
@@ -401,19 +402,18 @@
                 <span class="projects-lamp-beam"></span>
               </span>
             </div>
-            <button type="button" id="projects-lamp-switch" class="projects-pull-switch"
+            <button type="button" id="projects-lamp-switch" class="projects-lamp-toggle"
                     aria-controls="projects-light-stage" aria-pressed="false"
-                    aria-label="Pull down the cord to turn the project lights on. Keyboard users can press Enter or Space."
-                    title="Pull down the cord to switch the light">
-              <span class="projects-pull-cord" aria-hidden="true"></span>
-              <span class="projects-pull-handle" aria-hidden="true"></span>
-              <span class="projects-pull-label" id="projects-lamp-switch-label" aria-hidden="true">PULL ↓</span>
+                    aria-label="Turn project lights on" title="Switch project lights on or off">
+              <span class="projects-toggle-track" aria-hidden="true">
+                <span class="projects-toggle-thumb"></span>
+              </span>
+              <span class="projects-toggle-label" id="projects-lamp-switch-label" aria-hidden="true">LIGHTS OFF</span>
             </button>
             <span class="projects-lamp-status" id="projects-light-status" role="status" aria-live="polite">
-              Lights off. Pull the cord to reveal the projects.
+              Projects are dark. Use the switch to reveal all seven projects.
             </span>
           </div>
-          <p class="projects-quick-access"><span>Prefer a quick overview?</span> <button type="button" id="projects-show-all" class="projects-show-all">Show all projects without animation</button></p>
           <div class="projects-light-stage is-lit" id="projects-light-stage">
           <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
           <article class="project-card reveal">
@@ -586,6 +586,6 @@
       </div>
     </footer>
     <script src="assets/js/script.js" defer></script>
-    <script src="assets/js/lamp.js?v=20261101-pull-cord-v5" defer></script>
+    <script src="assets/js/lamp.js?v=20261101-clean-toggle-v6" defer></script>
   </body>
 </html>
