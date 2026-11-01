@@ -377,6 +377,20 @@
           Projects that better represent my direction in software engineering,
           backend, data science, cloud and applied AI.
         </p>
+        <div class="lighting-studio reveal" id="lighting-studio">
+          <div class="lighting-studio-intro">
+            <span class="lighting-studio-kicker">INTERACTIVE LIGHTING STUDIO</span>
+            <h3>Where should the spotlight fall?</h3>
+            <p id="lighting-description" aria-live="polite">Projects illuminated. Explore the work, or preview the entire page in night mode.</p>
+          </div>
+          <div class="lighting-studio-actions">
+            <div class="lighting-scope-options" role="group" aria-label="Spotlight area">
+              <button type="button" class="lighting-scope-btn is-active" data-light-scope="projects" aria-pressed="true">✦ Projects</button>
+              <button type="button" class="lighting-scope-btn" data-light-scope="page" aria-pressed="false">☾ Whole page</button>
+            </div>
+            <button type="button" id="projects-light-toggle" class="lighting-project-toggle" aria-pressed="true">Turn lights off</button>
+          </div>
+        </div>
         <div class="projects-grid" style="grid-template-columns:repeat(auto-fill,minmax(min(100%,350px),1fr))">
           <article class="project-card reveal">
             <div class="project-icon" aria-hidden="true">🌱</div>
@@ -524,6 +538,7 @@
       </div>
     </footer>
     <script src="assets/js/script.js" defer></script>
+    <button id="lighting-exit" class="lighting-exit" type="button" hidden aria-label="Restore normal page lighting">☀ Restore daylight <span aria-hidden="true">↗</span></button>
     <script src="assets/js/lamp.js" defer></script>
   </body>
 </html>
