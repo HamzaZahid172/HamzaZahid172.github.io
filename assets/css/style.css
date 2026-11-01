@@ -1275,3 +1275,7 @@ footer a:hover {
   .reveal,.reveal-left,.reveal-right{opacity:1!important;transform:none!important;}
   .typed-cursor{animation:none!important;}
 }
+
+/* Make the primary text and project descriptions easier to read on dark backgrounds. */
+:root{--muted:#9cb0c4;}
+:where(.project-desc,.section-sub,.about-text p,.contact-sub){color:#aabbd0;}
