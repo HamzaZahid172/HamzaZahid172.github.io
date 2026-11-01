@@ -47,7 +47,7 @@
     }
     </script>
     <link rel="stylesheet" href="assets/css/style.css" />
-    <link rel="stylesheet" href="assets/css/lamp.css?v=20261101-hanging-lamp-v4" />
+    <link rel="stylesheet" href="assets/css/lamp.css?v=20261101-pull-cord-v5" />
   </head>
   <body>
     <a href="#hero" class="skip-link">Skip to main content</a>
@@ -388,18 +388,11 @@
       <div class="max-w">
         <p class="section-label reveal">04 — Projects</p>
         <h2 class="section-title reveal">Selected <em>Engineering Projects</em></h2>
-        <p class="section-sub reveal">
-          Projects that better represent my direction in software engineering,
-          backend, data science, cloud and applied AI.
-        </p>
-
-        <!-- Free-hanging lamp: scrolls naturally away as projects move up. -->
+        <!-- Realistic hanging lamp with a draggable pull cord; the lamp scrolls naturally. -->
         <div class="projects-light-scene is-lit" id="projects-light-scene">
           <div class="projects-lamp-mount">
-            <button type="button" id="projects-lamp-switch" class="projects-lamp-switch"
-                    aria-controls="projects-light-stage" aria-pressed="false"
-                    aria-label="Turn on the lamp and reveal all projects">
-              <span class="projects-lamp-art" aria-hidden="true">
+            <div class="projects-lamp-switch" aria-hidden="true">
+              <span class="projects-lamp-art">
                 <span class="projects-lamp-cord"></span>
                 <span class="projects-lamp-shade"></span>
                 <span class="projects-lamp-rim"></span>
@@ -407,10 +400,17 @@
                 <span class="projects-lamp-halo"></span>
                 <span class="projects-lamp-beam"></span>
               </span>
-              <span class="projects-lamp-switch-label" id="projects-lamp-switch-label">TURN LIGHTS ON</span>
+            </div>
+            <button type="button" id="projects-lamp-switch" class="projects-pull-switch"
+                    aria-controls="projects-light-stage" aria-pressed="false"
+                    aria-label="Pull down the cord to turn the project lights on. Keyboard users can press Enter or Space."
+                    title="Pull down the cord to switch the light">
+              <span class="projects-pull-cord" aria-hidden="true"></span>
+              <span class="projects-pull-handle" aria-hidden="true"></span>
+              <span class="projects-pull-label" id="projects-lamp-switch-label" aria-hidden="true">PULL ↓</span>
             </button>
             <span class="projects-lamp-status" id="projects-light-status" role="status" aria-live="polite">
-              Lights off. Click the lamp to reveal my projects.
+              Lights off. Pull the cord to reveal the projects.
             </span>
           </div>
           <p class="projects-quick-access"><span>Prefer a quick overview?</span> <button type="button" id="projects-show-all" class="projects-show-all">Show all projects without animation</button></p>
@@ -586,6 +586,6 @@
       </div>
     </footer>
     <script src="assets/js/script.js" defer></script>
-    <script src="assets/js/lamp.js?v=20261101-hanging-lamp-v4" defer></script>
+    <script src="assets/js/lamp.js?v=20261101-pull-cord-v5" defer></script>
   </body>
 </html>

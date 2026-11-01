@@ -242,3 +242,111 @@
   #projects .projects-light-stage::before,
   #projects .projects-light-stage .project-card { transition: none!important; }
 }
+
+
+/* v5: a real pull-cord switch, with the lamp as a non-interactive fixture. */
+#projects .projects-lamp-mount {
+  width: min(100%, 220px);
+  height: 232px;
+  margin: 3px auto 12px;
+}
+#projects .projects-lamp-switch {
+  pointer-events: none;
+  cursor: default;
+}
+#projects .projects-pull-switch {
+  --pull-distance: 0px;
+  position: absolute;
+  z-index: 12;
+  top: 105px;
+  left: calc(50% + 38px);
+  width: 44px;
+  height: 122px;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+#projects .projects-pull-switch:active { cursor: grabbing; }
+#projects .projects-pull-switch:focus-visible {
+  outline: 2px solid #00d4ff;
+  outline-offset: 3px;
+}
+#projects .projects-pull-cord {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: calc(65px + var(--pull-distance));
+  border-radius: 2px;
+  background: linear-gradient(90deg,#776e64,#e2ccb0);
+  box-shadow: 0 0 3px rgba(254,220,158,.2);
+  transition: height .26s cubic-bezier(.18,.7,.25,1);
+  pointer-events: none;
+}
+#projects .projects-pull-handle {
+  position: absolute;
+  top: calc(65px + var(--pull-distance));
+  left: 50%;
+  width: 16px;
+  height: 19px;
+  border-radius: 9px 9px 12px 12px;
+  transform: translateX(-50%);
+  background: linear-gradient(110deg,#8b754f,#e2bc79 50%,#a67f4b);
+  border: 1px solid rgba(245,207,144,.72);
+  box-shadow: 0 3px 8px rgba(0,0,0,.47),0 0 7px rgba(242,192,113,.17);
+  transition: top .26s cubic-bezier(.18,.7,.25,1),box-shadow .2s;
+  pointer-events: none;
+}
+#projects .projects-pull-switch:hover .projects-pull-handle,
+#projects .projects-pull-switch:focus-visible .projects-pull-handle {
+  box-shadow: 0 3px 9px rgba(0,0,0,.55),0 0 13px rgba(243,190,100,.45);
+}
+#projects .projects-pull-label {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 99px;
+  transform: translateX(-50%);
+  color: #c7b28c;
+  font: 700 .55rem/1.4 var(--font-body,monospace);
+  letter-spacing: .1em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+#projects .projects-pull-switch.is-dragging .projects-pull-cord,
+#projects .projects-pull-switch.is-dragging .projects-pull-handle {
+  transition: none;
+}
+#projects .projects-light-scene.is-on .projects-pull-cord { background: linear-gradient(90deg,#a8936c,#ffe5b0); }
+#projects .projects-light-scene.is-on .projects-pull-label { color: #ffe1b1; }
+#projects .projects-light-scene.is-switching-on .projects-lamp-bulb {
+  animation: projectsBulbFlicker .68s linear 1;
+}
+@keyframes projectsBulbFlicker {
+  0%,23%,34%,48% { opacity:.24;box-shadow:none; }
+  12%,29%,43%,65%,100% { opacity:1; }
+}
+@media (max-width: 640px) {
+  #projects .projects-lamp-mount { width: min(100%, 190px);height: 212px;margin: 0 auto 7px; }
+  #projects .projects-pull-switch { top: 91px;left: calc(50% + 29px);height: 119px; }
+  #projects .projects-pull-cord { height: calc(61px + var(--pull-distance)); }
+  #projects .projects-pull-handle { top: calc(61px + var(--pull-distance)); }
+  #projects .projects-pull-label { top: 94px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #projects .projects-pull-cord,
+  #projects .projects-pull-handle {
+    transition: none!important;
+  }
+  #projects .projects-light-scene.is-switching-on .projects-lamp-bulb {
+    animation: none!important;
+  }
+}
